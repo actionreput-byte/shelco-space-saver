@@ -18,7 +18,7 @@ export type SystemSpec = {
   volumePerPosition: number;
 };
 
-export const SYSTEMS: SystemSpec[] = [
+export const SYSTEMS = [
   {
     key: "pallet",
     label: "Pallet racking",
@@ -52,7 +52,7 @@ export const SYSTEMS: SystemSpec[] = [
     positionLabel: "shelf levels",
     volumePerPosition: 0.65,
   },
-];
+] as const satisfies readonly SystemSpec[];
 
 export type CapacityInput = {
   length: number;
@@ -77,7 +77,8 @@ export type CapacityResult = {
 const clampPositive = (n: number) => (Number.isFinite(n) && n > 0 ? n : 0);
 
 export function calculateCapacity(input: CapacityInput): CapacityResult {
-  const spec = SYSTEMS.find((s) => s.key === input.system) ?? SYSTEMS[0];
+  const spec: SystemSpec =
+    SYSTEMS.find((s) => s.key === input.system) ?? SYSTEMS[0];
   const length = clampPositive(input.length);
   const width = clampPositive(input.width);
   const height = clampPositive(input.height);
