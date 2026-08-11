@@ -14,6 +14,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/app'
 import { Route as AuthenticatedCrmRouteImport } from './routes/_authenticated/crm'
+import { Route as AuthenticatedPortalRouteImport } from './routes/_authenticated/portal'
 import { Route as AuthenticatedCrmIndexRouteImport } from './routes/_authenticated/crm.index'
 import { Route as AuthenticatedCrmClientsRouteImport } from './routes/_authenticated/crm.clients'
 import { Route as AuthenticatedCrmFilesRouteImport } from './routes/_authenticated/crm.files'
@@ -45,6 +46,11 @@ const AuthenticatedAppRoute = AuthenticatedAppRouteImport.update({
 const AuthenticatedCrmRoute = AuthenticatedCrmRouteImport.update({
   id: '/crm',
   path: '/crm',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedPortalRoute = AuthenticatedPortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedCrmIndexRoute = AuthenticatedCrmIndexRouteImport.update({
@@ -97,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/app': typeof AuthenticatedAppRoute
   '/crm': typeof AuthenticatedCrmRouteWithChildren
+  '/portal': typeof AuthenticatedPortalRoute
   '/crm/clients': typeof AuthenticatedCrmClientsRoute
   '/crm/files': typeof AuthenticatedCrmFilesRoute
   '/crm/invoices': typeof AuthenticatedCrmInvoicesRoute
@@ -110,6 +117,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/app': typeof AuthenticatedAppRoute
+  '/portal': typeof AuthenticatedPortalRoute
   '/crm/clients': typeof AuthenticatedCrmClientsRoute
   '/crm/files': typeof AuthenticatedCrmFilesRoute
   '/crm/invoices': typeof AuthenticatedCrmInvoicesRoute
@@ -126,6 +134,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/_authenticated/app': typeof AuthenticatedAppRoute
   '/_authenticated/crm': typeof AuthenticatedCrmRouteWithChildren
+  '/_authenticated/portal': typeof AuthenticatedPortalRoute
   '/_authenticated/crm/clients': typeof AuthenticatedCrmClientsRoute
   '/_authenticated/crm/files': typeof AuthenticatedCrmFilesRoute
   '/_authenticated/crm/invoices': typeof AuthenticatedCrmInvoicesRoute
@@ -142,6 +151,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/app'
     | '/crm'
+    | '/portal'
     | '/crm/clients'
     | '/crm/files'
     | '/crm/invoices'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/app'
+    | '/portal'
     | '/crm/clients'
     | '/crm/files'
     | '/crm/invoices'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/_authenticated/app'
     | '/_authenticated/crm'
+    | '/_authenticated/portal'
     | '/_authenticated/crm/clients'
     | '/_authenticated/crm/files'
     | '/_authenticated/crm/invoices'
@@ -221,6 +233,13 @@ declare module '@tanstack/react-router' {
       path: '/crm'
       fullPath: '/crm'
       preLoaderRoute: typeof AuthenticatedCrmRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/portal': {
+      id: '/_authenticated/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof AuthenticatedPortalRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/crm/': {
@@ -310,11 +329,13 @@ const AuthenticatedCrmRouteWithChildren =
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAppRoute: typeof AuthenticatedAppRoute
   AuthenticatedCrmRoute: typeof AuthenticatedCrmRouteWithChildren
+  AuthenticatedPortalRoute: typeof AuthenticatedPortalRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAppRoute: AuthenticatedAppRoute,
   AuthenticatedCrmRoute: AuthenticatedCrmRouteWithChildren,
+  AuthenticatedPortalRoute: AuthenticatedPortalRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
