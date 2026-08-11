@@ -21,6 +21,7 @@ import { Route as AuthenticatedCrmFilesRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedCrmInvoicesRouteImport } from './routes/_authenticated/crm.invoices'
 import { Route as AuthenticatedCrmProductsRouteImport } from './routes/_authenticated/crm.products'
 import { Route as AuthenticatedCrmTeamRouteImport } from './routes/_authenticated/crm.team'
+import { Route as AuthenticatedPortalIndexRouteImport } from './routes/_authenticated/portal.index'
 import { Route as AuthenticatedCrmOrdersIndexRouteImport } from './routes/_authenticated/crm.orders.index'
 import { Route as AuthenticatedCrmOrdersOrderIdRouteImport } from './routes/_authenticated/crm.orders.$orderId'
 
@@ -85,6 +86,12 @@ const AuthenticatedCrmTeamRoute = AuthenticatedCrmTeamRouteImport.update({
   path: '/team',
   getParentRoute: () => AuthenticatedCrmRoute,
 } as any)
+const AuthenticatedPortalIndexRoute =
+  AuthenticatedPortalIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedPortalRoute,
+  } as any)
 const AuthenticatedCrmOrdersIndexRoute =
   AuthenticatedCrmOrdersIndexRouteImport.update({
     id: '/orders/',
@@ -103,13 +110,14 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/app': typeof AuthenticatedAppRoute
   '/crm': typeof AuthenticatedCrmRouteWithChildren
-  '/portal': typeof AuthenticatedPortalRoute
+  '/portal': typeof AuthenticatedPortalRouteWithChildren
   '/crm/clients': typeof AuthenticatedCrmClientsRoute
   '/crm/files': typeof AuthenticatedCrmFilesRoute
   '/crm/invoices': typeof AuthenticatedCrmInvoicesRoute
   '/crm/products': typeof AuthenticatedCrmProductsRoute
   '/crm/team': typeof AuthenticatedCrmTeamRoute
   '/crm/': typeof AuthenticatedCrmIndexRoute
+  '/portal/': typeof AuthenticatedPortalIndexRoute
   '/crm/orders/$orderId': typeof AuthenticatedCrmOrdersOrderIdRoute
   '/crm/orders/': typeof AuthenticatedCrmOrdersIndexRoute
 }
@@ -117,13 +125,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/app': typeof AuthenticatedAppRoute
-  '/portal': typeof AuthenticatedPortalRoute
   '/crm/clients': typeof AuthenticatedCrmClientsRoute
   '/crm/files': typeof AuthenticatedCrmFilesRoute
   '/crm/invoices': typeof AuthenticatedCrmInvoicesRoute
   '/crm/products': typeof AuthenticatedCrmProductsRoute
   '/crm/team': typeof AuthenticatedCrmTeamRoute
   '/crm': typeof AuthenticatedCrmIndexRoute
+  '/portal': typeof AuthenticatedPortalIndexRoute
   '/crm/orders/$orderId': typeof AuthenticatedCrmOrdersOrderIdRoute
   '/crm/orders': typeof AuthenticatedCrmOrdersIndexRoute
 }
@@ -134,13 +142,14 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/_authenticated/app': typeof AuthenticatedAppRoute
   '/_authenticated/crm': typeof AuthenticatedCrmRouteWithChildren
-  '/_authenticated/portal': typeof AuthenticatedPortalRoute
+  '/_authenticated/portal': typeof AuthenticatedPortalRouteWithChildren
   '/_authenticated/crm/clients': typeof AuthenticatedCrmClientsRoute
   '/_authenticated/crm/files': typeof AuthenticatedCrmFilesRoute
   '/_authenticated/crm/invoices': typeof AuthenticatedCrmInvoicesRoute
   '/_authenticated/crm/products': typeof AuthenticatedCrmProductsRoute
   '/_authenticated/crm/team': typeof AuthenticatedCrmTeamRoute
   '/_authenticated/crm/': typeof AuthenticatedCrmIndexRoute
+  '/_authenticated/portal/': typeof AuthenticatedPortalIndexRoute
   '/_authenticated/crm/orders/$orderId': typeof AuthenticatedCrmOrdersOrderIdRoute
   '/_authenticated/crm/orders/': typeof AuthenticatedCrmOrdersIndexRoute
 }
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/crm/products'
     | '/crm/team'
     | '/crm/'
+    | '/portal/'
     | '/crm/orders/$orderId'
     | '/crm/orders/'
   fileRoutesByTo: FileRoutesByTo
@@ -165,13 +175,13 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/app'
-    | '/portal'
     | '/crm/clients'
     | '/crm/files'
     | '/crm/invoices'
     | '/crm/products'
     | '/crm/team'
     | '/crm'
+    | '/portal'
     | '/crm/orders/$orderId'
     | '/crm/orders'
   id:
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/_authenticated/crm/products'
     | '/_authenticated/crm/team'
     | '/_authenticated/crm/'
+    | '/_authenticated/portal/'
     | '/_authenticated/crm/orders/$orderId'
     | '/_authenticated/crm/orders/'
   fileRoutesById: FileRoutesById
@@ -284,6 +295,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCrmTeamRouteImport
       parentRoute: typeof AuthenticatedCrmRoute
     }
+    '/_authenticated/portal/': {
+      id: '/_authenticated/portal/'
+      path: '/'
+      fullPath: '/portal/'
+      preLoaderRoute: typeof AuthenticatedPortalIndexRouteImport
+      parentRoute: typeof AuthenticatedPortalRoute
+    }
     '/_authenticated/crm/orders/': {
       id: '/_authenticated/crm/orders/'
       path: '/orders'
@@ -326,16 +344,27 @@ const AuthenticatedCrmRouteChildren: AuthenticatedCrmRouteChildren = {
 const AuthenticatedCrmRouteWithChildren =
   AuthenticatedCrmRoute._addFileChildren(AuthenticatedCrmRouteChildren)
 
+interface AuthenticatedPortalRouteChildren {
+  AuthenticatedPortalIndexRoute: typeof AuthenticatedPortalIndexRoute
+}
+
+const AuthenticatedPortalRouteChildren: AuthenticatedPortalRouteChildren = {
+  AuthenticatedPortalIndexRoute: AuthenticatedPortalIndexRoute,
+}
+
+const AuthenticatedPortalRouteWithChildren =
+  AuthenticatedPortalRoute._addFileChildren(AuthenticatedPortalRouteChildren)
+
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAppRoute: typeof AuthenticatedAppRoute
   AuthenticatedCrmRoute: typeof AuthenticatedCrmRouteWithChildren
-  AuthenticatedPortalRoute: typeof AuthenticatedPortalRoute
+  AuthenticatedPortalRoute: typeof AuthenticatedPortalRouteWithChildren
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAppRoute: AuthenticatedAppRoute,
   AuthenticatedCrmRoute: AuthenticatedCrmRouteWithChildren,
-  AuthenticatedPortalRoute: AuthenticatedPortalRoute,
+  AuthenticatedPortalRoute: AuthenticatedPortalRouteWithChildren,
 }
 
 const AuthenticatedRouteRouteWithChildren =
