@@ -16,6 +16,7 @@ import { Route as AuthenticatedAppRouteImport } from './routes/_authenticated/ap
 import { Route as AuthenticatedCrmRouteImport } from './routes/_authenticated/crm'
 import { Route as AuthenticatedCrmIndexRouteImport } from './routes/_authenticated/crm.index'
 import { Route as AuthenticatedCrmClientsRouteImport } from './routes/_authenticated/crm.clients'
+import { Route as AuthenticatedCrmFilesRouteImport } from './routes/_authenticated/crm.files'
 import { Route as AuthenticatedCrmInvoicesRouteImport } from './routes/_authenticated/crm.invoices'
 import { Route as AuthenticatedCrmProductsRouteImport } from './routes/_authenticated/crm.products'
 import { Route as AuthenticatedCrmOrdersIndexRouteImport } from './routes/_authenticated/crm.orders.index'
@@ -55,6 +56,11 @@ const AuthenticatedCrmClientsRoute = AuthenticatedCrmClientsRouteImport.update({
   path: '/clients',
   getParentRoute: () => AuthenticatedCrmRoute,
 } as any)
+const AuthenticatedCrmFilesRoute = AuthenticatedCrmFilesRouteImport.update({
+  id: '/files',
+  path: '/files',
+  getParentRoute: () => AuthenticatedCrmRoute,
+} as any)
 const AuthenticatedCrmInvoicesRoute =
   AuthenticatedCrmInvoicesRouteImport.update({
     id: '/invoices',
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AuthenticatedAppRoute
   '/crm': typeof AuthenticatedCrmRouteWithChildren
   '/crm/clients': typeof AuthenticatedCrmClientsRoute
+  '/crm/files': typeof AuthenticatedCrmFilesRoute
   '/crm/invoices': typeof AuthenticatedCrmInvoicesRoute
   '/crm/products': typeof AuthenticatedCrmProductsRoute
   '/crm/': typeof AuthenticatedCrmIndexRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/app': typeof AuthenticatedAppRoute
   '/crm/clients': typeof AuthenticatedCrmClientsRoute
+  '/crm/files': typeof AuthenticatedCrmFilesRoute
   '/crm/invoices': typeof AuthenticatedCrmInvoicesRoute
   '/crm/products': typeof AuthenticatedCrmProductsRoute
   '/crm': typeof AuthenticatedCrmIndexRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/_authenticated/app': typeof AuthenticatedAppRoute
   '/_authenticated/crm': typeof AuthenticatedCrmRouteWithChildren
   '/_authenticated/crm/clients': typeof AuthenticatedCrmClientsRoute
+  '/_authenticated/crm/files': typeof AuthenticatedCrmFilesRoute
   '/_authenticated/crm/invoices': typeof AuthenticatedCrmInvoicesRoute
   '/_authenticated/crm/products': typeof AuthenticatedCrmProductsRoute
   '/_authenticated/crm/': typeof AuthenticatedCrmIndexRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/crm'
     | '/crm/clients'
+    | '/crm/files'
     | '/crm/invoices'
     | '/crm/products'
     | '/crm/'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/app'
     | '/crm/clients'
+    | '/crm/files'
     | '/crm/invoices'
     | '/crm/products'
     | '/crm'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/_authenticated/app'
     | '/_authenticated/crm'
     | '/_authenticated/crm/clients'
+    | '/_authenticated/crm/files'
     | '/_authenticated/crm/invoices'
     | '/_authenticated/crm/products'
     | '/_authenticated/crm/'
@@ -213,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCrmClientsRouteImport
       parentRoute: typeof AuthenticatedCrmRoute
     }
+    '/_authenticated/crm/files': {
+      id: '/_authenticated/crm/files'
+      path: '/files'
+      fullPath: '/crm/files'
+      preLoaderRoute: typeof AuthenticatedCrmFilesRouteImport
+      parentRoute: typeof AuthenticatedCrmRoute
+    }
     '/_authenticated/crm/invoices': {
       id: '/_authenticated/crm/invoices'
       path: '/invoices'
@@ -246,6 +265,7 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedCrmRouteChildren {
   AuthenticatedCrmClientsRoute: typeof AuthenticatedCrmClientsRoute
+  AuthenticatedCrmFilesRoute: typeof AuthenticatedCrmFilesRoute
   AuthenticatedCrmInvoicesRoute: typeof AuthenticatedCrmInvoicesRoute
   AuthenticatedCrmProductsRoute: typeof AuthenticatedCrmProductsRoute
   AuthenticatedCrmIndexRoute: typeof AuthenticatedCrmIndexRoute
@@ -255,6 +275,7 @@ interface AuthenticatedCrmRouteChildren {
 
 const AuthenticatedCrmRouteChildren: AuthenticatedCrmRouteChildren = {
   AuthenticatedCrmClientsRoute: AuthenticatedCrmClientsRoute,
+  AuthenticatedCrmFilesRoute: AuthenticatedCrmFilesRoute,
   AuthenticatedCrmInvoicesRoute: AuthenticatedCrmInvoicesRoute,
   AuthenticatedCrmProductsRoute: AuthenticatedCrmProductsRoute,
   AuthenticatedCrmIndexRoute: AuthenticatedCrmIndexRoute,
