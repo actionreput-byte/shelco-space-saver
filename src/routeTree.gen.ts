@@ -18,6 +18,7 @@ import { Route as AuthenticatedCrmIndexRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedCrmClientsRouteImport } from './routes/_authenticated/crm.clients'
 import { Route as AuthenticatedCrmProductsRouteImport } from './routes/_authenticated/crm.products'
 import { Route as AuthenticatedCrmOrdersIndexRouteImport } from './routes/_authenticated/crm.orders.index'
+import { Route as AuthenticatedCrmOrdersOrderIdRouteImport } from './routes/_authenticated/crm.orders.$orderId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -65,6 +66,12 @@ const AuthenticatedCrmOrdersIndexRoute =
     path: '/orders/',
     getParentRoute: () => AuthenticatedCrmRoute,
   } as any)
+const AuthenticatedCrmOrdersOrderIdRoute =
+  AuthenticatedCrmOrdersOrderIdRouteImport.update({
+    id: '/orders/$orderId',
+    path: '/orders/$orderId',
+    getParentRoute: () => AuthenticatedCrmRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/crm/clients': typeof AuthenticatedCrmClientsRoute
   '/crm/products': typeof AuthenticatedCrmProductsRoute
   '/crm/': typeof AuthenticatedCrmIndexRoute
+  '/crm/orders/$orderId': typeof AuthenticatedCrmOrdersOrderIdRoute
   '/crm/orders/': typeof AuthenticatedCrmOrdersIndexRoute
 }
 export interface FileRoutesByTo {
@@ -83,6 +91,7 @@ export interface FileRoutesByTo {
   '/crm/clients': typeof AuthenticatedCrmClientsRoute
   '/crm/products': typeof AuthenticatedCrmProductsRoute
   '/crm': typeof AuthenticatedCrmIndexRoute
+  '/crm/orders/$orderId': typeof AuthenticatedCrmOrdersOrderIdRoute
   '/crm/orders': typeof AuthenticatedCrmOrdersIndexRoute
 }
 export interface FileRoutesById {
@@ -95,6 +104,7 @@ export interface FileRoutesById {
   '/_authenticated/crm/clients': typeof AuthenticatedCrmClientsRoute
   '/_authenticated/crm/products': typeof AuthenticatedCrmProductsRoute
   '/_authenticated/crm/': typeof AuthenticatedCrmIndexRoute
+  '/_authenticated/crm/orders/$orderId': typeof AuthenticatedCrmOrdersOrderIdRoute
   '/_authenticated/crm/orders/': typeof AuthenticatedCrmOrdersIndexRoute
 }
 export interface FileRouteTypes {
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/crm/clients'
     | '/crm/products'
     | '/crm/'
+    | '/crm/orders/$orderId'
     | '/crm/orders/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/crm/clients'
     | '/crm/products'
     | '/crm'
+    | '/crm/orders/$orderId'
     | '/crm/orders'
   id:
     | '__root__'
@@ -127,6 +139,7 @@ export interface FileRouteTypes {
     | '/_authenticated/crm/clients'
     | '/_authenticated/crm/products'
     | '/_authenticated/crm/'
+    | '/_authenticated/crm/orders/$orderId'
     | '/_authenticated/crm/orders/'
   fileRoutesById: FileRoutesById
 }
@@ -201,6 +214,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedCrmOrdersIndexRouteImport
       parentRoute: typeof AuthenticatedCrmRoute
     }
+    '/_authenticated/crm/orders/$orderId': {
+      id: '/_authenticated/crm/orders/$orderId'
+      path: '/orders/$orderId'
+      fullPath: '/crm/orders/$orderId'
+      preLoaderRoute: typeof AuthenticatedCrmOrdersOrderIdRouteImport
+      parentRoute: typeof AuthenticatedCrmRoute
+    }
   }
 }
 
@@ -208,6 +228,7 @@ interface AuthenticatedCrmRouteChildren {
   AuthenticatedCrmClientsRoute: typeof AuthenticatedCrmClientsRoute
   AuthenticatedCrmProductsRoute: typeof AuthenticatedCrmProductsRoute
   AuthenticatedCrmIndexRoute: typeof AuthenticatedCrmIndexRoute
+  AuthenticatedCrmOrdersOrderIdRoute: typeof AuthenticatedCrmOrdersOrderIdRoute
   AuthenticatedCrmOrdersIndexRoute: typeof AuthenticatedCrmOrdersIndexRoute
 }
 
@@ -215,6 +236,7 @@ const AuthenticatedCrmRouteChildren: AuthenticatedCrmRouteChildren = {
   AuthenticatedCrmClientsRoute: AuthenticatedCrmClientsRoute,
   AuthenticatedCrmProductsRoute: AuthenticatedCrmProductsRoute,
   AuthenticatedCrmIndexRoute: AuthenticatedCrmIndexRoute,
+  AuthenticatedCrmOrdersOrderIdRoute: AuthenticatedCrmOrdersOrderIdRoute,
   AuthenticatedCrmOrdersIndexRoute: AuthenticatedCrmOrdersIndexRoute,
 }
 
