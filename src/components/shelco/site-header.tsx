@@ -48,6 +48,13 @@ export function SiteHeader() {
               </a>
             ))}
           </nav>
+          <Link
+            to={user ? "/app" : "/auth"}
+            className="hidden items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary sm:inline-flex"
+          >
+            <LogIn className="h-4 w-4" />
+            {user ? "My dashboard" : "Client portal"}
+          </Link>
           <a
             href="tel:+255767224466"
             className="inline-flex items-center gap-2 rounded-lg brand-gradient px-3 py-2 text-sm font-bold text-primary-foreground shadow-glow transition-transform active:scale-95"
