@@ -99,6 +99,23 @@ export function SiteHeader() {
                   </a>
                 </motion.li>
               ))}
+              <li className="grid grid-cols-2 gap-2 py-3">
+                <Link
+                  to={user ? "/app" : "/auth"}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg brand-gradient px-3 py-2.5 text-center text-sm font-bold text-primary-foreground"
+                >
+                  {user ? "My dashboard" : "Client portal"}
+                </Link>
+                <Link
+                  to="/auth"
+                  search={{ mode: "staff" }}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg border border-border px-3 py-2.5 text-center text-sm font-bold text-secondary"
+                >
+                  Staff login
+                </Link>
+              </li>
             </ul>
           </motion.nav>
         ) : null}
