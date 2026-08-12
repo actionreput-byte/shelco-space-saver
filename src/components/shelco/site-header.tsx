@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, Phone, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { LogIn, Menu, Phone, X } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 import logoAsset from "@/assets/shelco-logo.asset.json";
 
 const NAV = [
