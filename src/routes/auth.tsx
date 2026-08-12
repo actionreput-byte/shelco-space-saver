@@ -24,9 +24,8 @@ export const Route = createFileRoute("/auth")({
       },
     ],
   }),
-  validateSearch: (search: Record<string, unknown>) => ({
-    mode: search['mode'] === "staff" ? ("staff" as const) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { mode?: "staff" } =>
+    search['mode'] === "staff" ? { mode: "staff" } : {},
   component: AuthPage,
 });
 
