@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "sdk_version": "0.26.2",
+  "path": "/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://tbdvzwvkemcveasvoeve.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "shelco-storage-showcase",
+      "version": "0.1.0",
+      "title": "Shelco Storage Showcase"
+    },
+    "tools": [
+      {
+        "name": "list_orders",
+        "title": "List orders",
+        "description": "List Shelco racking and shelving orders visible to the signed-in user. Clients see only their own orders; staff see all orders.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "Filter by order status.",
+              "type": "string",
+              "enum": [
+                "quote",
+                "confirmed",
+                "in_production",
+                "installed",
+                "closed",
+                "cancelled"
+              ]
+            },
+            "search": {
+              "description": "Match order number or title.",
+              "type": "string"
+            },
+            "limit": {
+              "description": "Max rows (default 20).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_order",
+        "title": "Get order details",
+        "description": "Get one Shelco order by its order number (e.g. SO-1042) including line items and the status history.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "order_number": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The order number, e.g. SO-1042."
+            }
+          },
+          "required": [
+            "order_number"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_invoices",
+        "title": "List invoices",
+        "description": "List Shelco invoices visible to the signed-in user, with totals and amounts paid. Clients see only their own invoices; staff see all.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "Filter by invoice status.",
+              "type": "string",
+              "enum": [
+                "draft",
+                "sent",
+                "partially_paid",
+                "paid",
+                "overdue",
+                "cancelled"
+              ]
+            },
+            "unpaid_only": {
+              "description": "Only invoices not fully paid.",
+              "type": "boolean"
+            },
+            "limit": {
+              "description": "Max rows (default 20).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_clients",
+        "title": "List clients",
+        "description": "List Shelco client accounts with their status. Only Shelco staff can read the full directory; clients see only their own record.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "status": {
+              "description": "Filter by client status.",
+              "type": "string",
+              "enum": [
+                "lead",
+                "active",
+                "dormant",
+                "blocked"
+              ]
+            },
+            "search": {
+              "description": "Match company or contact name.",
+              "type": "string"
+            },
+            "limit": {
+              "description": "Max rows (default 20).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_products",
+        "title": "List products and stock",
+        "description": "List Shelco products (racking, shelving and accessories) with price and current stock levels. Staff access only.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "search": {
+              "description": "Match SKU, name or category.",
+              "type": "string"
+            },
+            "low_stock_only": {
+              "description": "Only products at or below their reorder level.",
+              "type": "boolean"
+            },
+            "limit": {
+              "description": "Max rows (default 50).",
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200
+            }
+          }
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "create_quote_request",
+        "title": "Create quote request",
+        "description": "Log a new quote / site-visit request in the Shelco CRM enquiries list so the sales team can follow up.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Contact person's name."
+            },
+            "phone": {
+              "description": "Tanzanian phone number for follow-up.",
+              "type": "string"
+            },
+            "email": {
+              "description": "Contact email address.",
+              "type": "string"
+            },
+            "company": {
+              "description": "Company or business name.",
+              "type": "string"
+            },
+            "service": {
+              "description": "Which Shelco service the enquiry is about.",
+              "type": "string",
+              "enum": [
+                "Racking Solutions",
+                "Shelving Solutions",
+                "General Shelving & Racking",
+                "Accessories"
+              ]
+            },
+            "message": {
+              "description": "Details of the storage requirement.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "update_order_status",
+        "title": "Update order status",
+        "description": "Move a Shelco order to a new status in the pipeline (quote, confirmed, in production, installed, closed, cancelled). Staff access only.",
+        "annotations": {
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "order_number": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The order number, e.g. SO-1042."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "quote",
+                "confirmed",
+                "in_production",
+                "installed",
+                "closed",
+                "cancelled"
+              ],
+              "description": "The new status for the order."
+            },
+            "note": {
+              "description": "Optional note recorded with the status change.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "order_number",
+            "status"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
