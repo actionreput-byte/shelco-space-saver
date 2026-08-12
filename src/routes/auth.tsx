@@ -56,6 +56,16 @@ function AuthPage() {
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
+  const nextPath = search.next && search.next.startsWith("/") ? search.next : null;
+
+  function goNext() {
+    if (nextPath) {
+      window.location.href = nextPath;
+      return;
+    }
+    void navigate({ to: "/app" });
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setBusy(true);
@@ -68,13 +78,13 @@ function AuthPage() {
         if (error) throw error;
         await refresh();
         toast.success("Welcome back");
-        void navigate({ to: "/app" });
+        goNext();
       } else {
         const { error } = await supabase.auth.signUp({
           email: form.email.trim(),
           password: form.password,
           options: {
-            emailRedirectTo: `${window.location.origin}/app`,
+            emailRedirectTo: `${window.location.origin}${nextPath ?? "/app"}`,
             data: {
               full_name: form.fullName,
               company: form.company,
@@ -86,7 +96,7 @@ function AuthPage() {
         if (error) throw error;
         await refresh();
         toast.success("Account created");
-        void navigate({ to: "/app" });
+        goNext();
       }
     } catch (err) {
       const message = err instanceof Error ? err.message : "Something went wrong";
@@ -100,7 +110,7 @@ function AuthPage() {
     setBusy(true);
     try {
       const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
+        redirect_uri: `${window.location.origin}${nextPath ?? ""}`,
       });
       if (result.error) {
         toast.error("Google sign-in failed");
@@ -108,7 +118,7 @@ function AuthPage() {
       }
       if (result.redirected) return;
       await refresh();
-      void navigate({ to: "/app" });
+      goNext();
     } finally {
       setBusy(false);
     }
