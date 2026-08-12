@@ -19,6 +19,8 @@ export default defineMcp({
     issuer: `https://${projectRef}.supabase.co/auth/v1`,
     acceptedAudiences: "authenticated",
   }),
+  // `exactOptionalPropertyTypes` makes the optional `outputSchema` field on
+  // defineTool results structurally incompatible with the registry type.
   tools: [
     listOrders,
     getOrder,
@@ -27,5 +29,5 @@ export default defineMcp({
     listProducts,
     createQuoteRequest,
     updateOrderStatus,
-  ],
+  ] as unknown as Parameters<typeof defineMcp>[0]["tools"],
 });
