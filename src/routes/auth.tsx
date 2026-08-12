@@ -24,6 +24,8 @@ export const Route = createFileRoute("/auth")({
       },
     ],
   }),
+  validateSearch: (search: Record<string, unknown>): { mode?: "staff" } =>
+    search['mode'] === "staff" ? { mode: "staff" } : {},
   component: AuthPage,
 });
 
@@ -34,7 +36,10 @@ function AuthPage() {
   const navigate = useNavigate();
   const { refresh } = useAuth();
   const [mode, setMode] = useState<Mode>("signin");
-  const [accountType, setAccountType] = useState<AccountType>("client");
+  const search = Route.useSearch();
+  const [accountType, setAccountType] = useState<AccountType>(
+    search.mode === "staff" ? "staff" : "client",
+  );
   const [busy, setBusy] = useState(false);
   const [form, setForm] = useState({
     email: "",

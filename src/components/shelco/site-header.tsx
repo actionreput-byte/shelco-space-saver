@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, Phone, X } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { LogIn, Menu, Phone, X } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 import logoAsset from "@/assets/shelco-logo.asset.json";
 
 const NAV = [
@@ -14,6 +16,7 @@ const NAV = [
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <motion.header
@@ -45,6 +48,13 @@ export function SiteHeader() {
               </a>
             ))}
           </nav>
+          <Link
+            to={user ? "/app" : "/auth"}
+            className="hidden items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary sm:inline-flex"
+          >
+            <LogIn className="h-4 w-4" />
+            {user ? "My dashboard" : "Client portal"}
+          </Link>
           <a
             href="tel:+255767224466"
             className="inline-flex items-center gap-2 rounded-lg brand-gradient px-3 py-2 text-sm font-bold text-primary-foreground shadow-glow transition-transform active:scale-95"
@@ -89,6 +99,23 @@ export function SiteHeader() {
                   </a>
                 </motion.li>
               ))}
+              <li className="grid grid-cols-2 gap-2 py-3">
+                <Link
+                  to={user ? "/app" : "/auth"}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg brand-gradient px-3 py-2.5 text-center text-sm font-bold text-primary-foreground"
+                >
+                  {user ? "My dashboard" : "Client portal"}
+                </Link>
+                <Link
+                  to="/auth"
+                  search={{ mode: "staff" }}
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg border border-border px-3 py-2.5 text-center text-sm font-bold text-secondary"
+                >
+                  Staff login
+                </Link>
+              </li>
             </ul>
           </motion.nav>
         ) : null}
