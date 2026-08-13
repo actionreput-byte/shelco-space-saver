@@ -1,0 +1,15 @@
+{
+  "name": "Shelco Storage Systems",
+  "short_name": "Shelco",
+  "description": "Order racking and shelving, track your orders and chat with Shelco Storage Systems, Dar es Salaam.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#ee5b2b",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
