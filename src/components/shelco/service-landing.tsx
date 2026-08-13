@@ -108,7 +108,7 @@ function BookingForm({ service }: { service: string }) {
         <SectionHeading
           eyebrow="Book now"
           title="Request your free site visit"
-          subtitle="Tell us about your space and our team will call you back with a layout and quotation."
+          description="Tell us about your space and our team will call you back with a layout and quotation."
         />
         <Reveal>
           <form
