@@ -246,7 +246,7 @@ export function ServiceLanding({ service }: { service: ServiceData }) {
             <SectionHeading
               eyebrow="What you get"
               title={`${service.name} built for Tanzanian conditions`}
-              subtitle="Manufactured in high-grade Q235 steel, powder-coated and installed by our own fitting teams."
+              description="Manufactured in high-grade Q235 steel, powder-coated and installed by our own fitting teams."
             />
             <Stagger className="mt-8 grid gap-4 sm:grid-cols-3">
               {service.benefits.map((b) => (
