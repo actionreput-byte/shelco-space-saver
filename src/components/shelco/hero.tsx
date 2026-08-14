@@ -158,21 +158,26 @@ export function Hero({ onCapacityChange }: Props) {
           </div>
 
           <div className="mt-5 grid grid-cols-2 gap-3">
-            <ResultTile
-              label={spec.positionLabel}
-              value={result.positions}
-              highlight
-            />
-            <ResultTile label="bays" value={result.bays} />
-            <ResultTile label="levels high" value={result.levels} />
-            <ResultTile
-              label="m³ storage volume"
-              value={result.storageVolume}
-              decimals={0}
-            />
+            <ResultTile label={t("calc.units")} value={result.bays} highlight />
+            <ResultTile label={spec.positionLabel} value={result.positions} />
+            <ResultTile label={t("calc.levels")} value={result.levels} />
+            <ResultTile label={t("calc.load")} value={result.totalLoadKg} />
+          </div>
+
+          <div className="mt-3 rounded-xl border border-primary/40 bg-primary-soft px-3 py-2.5">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
+              {t("calc.price")}
+            </p>
+            <p className="font-display text-xl font-extrabold text-primary">
+              {formatTzs(result.totalPrice)}
+            </p>
+            <p className="text-[11px] text-muted-foreground">
+              {result.bays} × {spec.label} — {formatTzs(spec.pricePerBay)} {t("shop.vat")}
+            </p>
           </div>
 
           <p className="mt-4 rounded-lg bg-muted px-3 py-2 text-xs text-muted-foreground">
+
             Floor area {formatNumber(result.floorArea)} m² ·{" "}
             {formatNumber(result.utilisation, 1)}% covered by racking with{" "}
             {formatNumber(result.rows)} rows.
