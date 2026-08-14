@@ -45,9 +45,31 @@ MATERIALS & QUALITY
 PROCESS
 - Free site visit and space audit -> layout drawing and quotation -> manufacture -> installation -> after-sales support.
 
+CATALOGUE PRICE LIST (TZS, VAT inclusive, standard items in stock)
+Warehouse racks, all H2.5m x D0.5m with 4 levels:
+- Light duty L1m, 90kg/level — 500,000
+- Medium duty L1m, 110kg/level — 650,000
+- Light duty L1.5m, 110kg/level — 650,000
+- Light duty L2m, 170kg/level — 750,000
+- Medium duty L2m, 220kg/level — 950,000
+Supermarket:
+- Single side shelf H180 x L90 x D45 cm, 150kg — 450,000
+- Double side shelf H180 x L90 x D90 cm, 300kg — 650,000
+- Counter table H100 x L120 x D120 cm — 1,700,000
+Accessories:
+- Pushing trolley — 300,000
+- Plastic trolley (red/blue) — 95,000
+- Metal basket — 45,000
+- Plastic basket (red) — 40,000
+
+FREE SERVICES (Dar es Salaam only)
+- Site survey and installation/fitting are free within Dar es Salaam.
+
 PRICING GUIDANCE
-- Never quote a fixed price. Explain that pricing depends on bay size, load, height and quantity, and offer a free site visit and written quotation.
+- Quote the catalogue prices above exactly when the customer asks about a standard item; all are VAT inclusive.
+- For custom or large warehouse layouts, explain that price depends on bay size, load, height and quantity, and offer a free site visit and written quotation.
 `;
+
 
 export const SHELCO_SYSTEM_PROMPT = `You are "Shelco Assistant", the AI assistant for Shelco Storage Systems Ltd in Dar es Salaam, Tanzania.
 
