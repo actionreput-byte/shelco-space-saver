@@ -95,7 +95,26 @@ const DICT = {
     "form.message": "Tueleze kuhusu eneo lako",
     "form.sent": "Asante — timu yetu itakupigia hivi karibuni.",
     "faq.title": "Maswali yanayoulizwa mara kwa mara",
+    "nav.shop": "Duka",
+    "shop.all": "Bidhaa zote",
+    "shop.eyebrow": "Duka",
+    "shop.title": "Bidhaa na bei zetu",
+    "shop.subtitle":
+      "Rack za ghala, shelf za maduka na vifaa vinapatikana Dar es Salaam. Bei zote ni pamoja na VAT, ukaguzi wa eneo na ufungaji ni bure ndani ya Dar es Salaam.",
+    "shop.order": "Agiza sasa",
+    "shop.vat": "Bei ni pamoja na VAT",
+    "calc.title": "Kikokotoo cha uwezo wa hifadhi",
+    "calc.subtitle": "Kadiria eneo lako linaweza kubeba kiasi gani.",
+    "calc.length": "Urefu (m)",
+    "calc.width": "Upana (m)",
+    "calc.height": "Kimo cha wazi (m)",
+    "calc.aisle": "Upana wa njia (m)",
+    "calc.units": "vipande vinavyohitajika",
+    "calc.levels": "ngazi kwenda juu",
+    "calc.load": "kilo jumla ya mzigo",
+    "calc.price": "Makadirio ya bei",
   },
+
 } as const;
 
 export type TranslationKey = keyof (typeof DICT)["en"];
