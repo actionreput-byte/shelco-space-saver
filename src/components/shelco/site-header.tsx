@@ -14,12 +14,14 @@ export function SiteHeader() {
   const { lang, setLang, t } = useI18n();
 
   const NAV = [
+    { label: t("nav.shop"), href: "/shop" },
     { label: t("nav.about"), href: "/#about" },
     { label: t("nav.roi"), href: "/#roi" },
     { label: t("nav.projects"), href: "/#portfolio" },
     { label: t("nav.insights"), href: "/#blog" },
     { label: t("nav.contact"), href: "/#contact" },
   ];
+
 
   const LangToggle = ({ className = "" }: { className?: string }) => (
     <button

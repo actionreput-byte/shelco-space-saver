@@ -43,7 +43,26 @@ const DICT = {
     "form.message": "Tell us about your space",
     "form.sent": "Thank you — our team will call you shortly.",
     "faq.title": "Frequently asked questions",
+    "nav.shop": "Shop",
+    "shop.all": "All products",
+    "shop.eyebrow": "Shop",
+    "shop.title": "Our products & prices",
+    "shop.subtitle":
+      "Warehouse racks, supermarket shelving and accessories in stock in Dar es Salaam. All prices VAT inclusive with free site survey and installation in Dar es Salaam.",
+    "shop.order": "Order now",
+    "shop.vat": "VAT inclusive",
+    "calc.title": "Shelving capacity calculator",
+    "calc.subtitle": "Estimate what your space can really hold.",
+    "calc.length": "Length (m)",
+    "calc.width": "Width (m)",
+    "calc.height": "Clear height (m)",
+    "calc.aisle": "Aisle width (m)",
+    "calc.units": "units needed",
+    "calc.levels": "levels high",
+    "calc.load": "kg total load",
+    "calc.price": "Indicative price",
   },
+
   sw: {
     "nav.about": "Kuhusu",
     "nav.services": "Huduma",
@@ -76,7 +95,26 @@ const DICT = {
     "form.message": "Tueleze kuhusu eneo lako",
     "form.sent": "Asante — timu yetu itakupigia hivi karibuni.",
     "faq.title": "Maswali yanayoulizwa mara kwa mara",
+    "nav.shop": "Duka",
+    "shop.all": "Bidhaa zote",
+    "shop.eyebrow": "Duka",
+    "shop.title": "Bidhaa na bei zetu",
+    "shop.subtitle":
+      "Rack za ghala, shelf za maduka na vifaa vinapatikana Dar es Salaam. Bei zote ni pamoja na VAT, ukaguzi wa eneo na ufungaji ni bure ndani ya Dar es Salaam.",
+    "shop.order": "Agiza sasa",
+    "shop.vat": "Bei ni pamoja na VAT",
+    "calc.title": "Kikokotoo cha uwezo wa hifadhi",
+    "calc.subtitle": "Kadiria eneo lako linaweza kubeba kiasi gani.",
+    "calc.length": "Urefu (m)",
+    "calc.width": "Upana (m)",
+    "calc.height": "Kimo cha wazi (m)",
+    "calc.aisle": "Upana wa njia (m)",
+    "calc.units": "vipande vinavyohitajika",
+    "calc.levels": "ngazi kwenda juu",
+    "calc.load": "kilo jumla ya mzigo",
+    "calc.price": "Makadirio ya bei",
   },
+
 } as const;
 
 export type TranslationKey = keyof (typeof DICT)["en"];

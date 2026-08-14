@@ -6,13 +6,16 @@ import {
   SYSTEMS,
   calculateCapacity,
   formatNumber,
+  formatTzs,
   type SystemKey,
 } from "@/lib/calculators";
+import { useI18n } from "@/i18n";
 import { CountUp } from "./motion-primitives";
 
 type Props = { onCapacityChange?: (positions: number) => void };
 
 export function Hero({ onCapacityChange }: Props) {
+  const { t } = useI18n();
   const [length, setLength] = useState(40);
   const [width, setWidth] = useState(20);
   const [height, setHeight] = useState(8);
@@ -31,11 +34,12 @@ export function Hero({ onCapacityChange }: Props) {
   }, [result.positions, onCapacityChange]);
 
   const fields = [
-    { label: "Length (m)", value: length, set: setLength, step: 1 },
-    { label: "Width (m)", value: width, set: setWidth, step: 1 },
-    { label: "Clear height (m)", value: height, set: setHeight, step: 0.5 },
-    { label: "Aisle width (m)", value: aisle, set: setAisle, step: 0.1 },
+    { label: t("calc.length"), value: length, set: setLength, step: 1 },
+    { label: t("calc.width"), value: width, set: setWidth, step: 1 },
+    { label: t("calc.height"), value: height, set: setHeight, step: 0.5 },
+    { label: t("calc.aisle"), value: aisle, set: setAisle, step: 0.1 },
   ];
+
 
   return (
     <section id="top" className="relative overflow-hidden">
@@ -112,12 +116,9 @@ export function Hero({ onCapacityChange }: Props) {
               <Ruler className="h-4 w-4" />
             </span>
             <div className="min-w-0">
-              <h2 className="truncate text-lg font-extrabold">
-                Shelving capacity calculator
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                Estimate what your space can really hold.
-              </p>
+              <h2 className="truncate text-lg font-extrabold">{t("calc.title")}</h2>
+              <p className="text-xs text-muted-foreground">{t("calc.subtitle")}</p>
+
             </div>
           </div>
 
@@ -157,21 +158,26 @@ export function Hero({ onCapacityChange }: Props) {
           </div>
 
           <div className="mt-5 grid grid-cols-2 gap-3">
-            <ResultTile
-              label={spec.positionLabel}
-              value={result.positions}
-              highlight
-            />
-            <ResultTile label="bays" value={result.bays} />
-            <ResultTile label="levels high" value={result.levels} />
-            <ResultTile
-              label="m³ storage volume"
-              value={result.storageVolume}
-              decimals={0}
-            />
+            <ResultTile label={t("calc.units")} value={result.bays} highlight />
+            <ResultTile label={spec.positionLabel} value={result.positions} />
+            <ResultTile label={t("calc.levels")} value={result.levels} />
+            <ResultTile label={t("calc.load")} value={result.totalLoadKg} />
+          </div>
+
+          <div className="mt-3 rounded-xl border border-primary/40 bg-primary-soft px-3 py-2.5">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
+              {t("calc.price")}
+            </p>
+            <p className="font-display text-xl font-extrabold text-primary">
+              {formatTzs(result.totalPrice)}
+            </p>
+            <p className="text-[11px] text-muted-foreground">
+              {result.bays} × {spec.label} — {formatTzs(spec.pricePerBay)} {t("shop.vat")}
+            </p>
           </div>
 
           <p className="mt-4 rounded-lg bg-muted px-3 py-2 text-xs text-muted-foreground">
+
             Floor area {formatNumber(result.floorArea)} m² ·{" "}
             {formatNumber(result.utilisation, 1)}% covered by racking with{" "}
             {formatNumber(result.rows)} rows.

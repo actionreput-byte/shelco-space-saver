@@ -18,7 +18,7 @@ import {
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { useAuth } from "@/hooks/useAuth";
 import { useI18n } from "@/i18n";
-import agentIcon from "@/assets/icon-racking.png";
+import agentIcon from "@/assets/mascot.png";
 
 const VISITOR_KEY = "shelco.visitorId";
 
@@ -67,15 +67,29 @@ export function FloatingChat() {
 
   return (
     <>
-      <button
+      <motion.button
         type="button"
         onClick={() => setOpen(true)}
         aria-label={t("chat.open")}
-        className="fixed bottom-4 right-4 z-50 inline-flex items-center gap-2 rounded-full brand-gradient px-4 py-3 font-bold text-primary-foreground shadow-glow transition-transform active:scale-95"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.6, type: "spring", stiffness: 220, damping: 16 }}
+        whileTap={{ scale: 0.94 }}
+        className="fixed bottom-4 right-4 z-50 inline-flex items-center gap-2 rounded-full brand-gradient py-2 pl-2 pr-4 font-bold text-primary-foreground shadow-glow"
       >
-        <MessageCircle className="h-5 w-5" />
-        <span className="hidden sm:inline">{t("chat.open")}</span>
-      </button>
+        <motion.img
+          src={agentIcon}
+          alt=""
+          width={96}
+          height={96}
+          className="h-11 w-11 drop-shadow"
+          animate={{ y: [0, -4, 0], rotate: [0, -4, 0, 4, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <span className="hidden text-sm sm:inline">{t("chat.open")}</span>
+        <MessageCircle className="h-5 w-5 sm:hidden" />
+      </motion.button>
+
 
       <AnimatePresence>
         {open ? (
