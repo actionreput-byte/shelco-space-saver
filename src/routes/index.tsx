@@ -64,7 +64,9 @@ function Index() {
         </div>
 
         <Services />
+        <ShopSection />
         <SectorMarquee />
+
 
         <div className="py-8">
           <SocialProofStrip
