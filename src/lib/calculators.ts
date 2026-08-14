@@ -16,41 +16,60 @@ export type SystemSpec = {
   positionLabel: string;
   /** Typical stored volume per position, cubic metres */
   volumePerPosition: number;
+  /** Levels supplied as standard with the catalogue unit */
+  standardLevels: number;
+  /** Rated load per level, kg */
+  loadPerLevel: number;
+  /** Catalogue price per bay, TZS VAT inclusive */
+  pricePerBay: number;
 };
 
+/**
+ * Specs mirror the Shelco catalogue: warehouse racks are H2.5m × D0.5m with
+ * 4 levels, supermarket gondolas are H1.8m × L0.9m.
+ */
 export const SYSTEMS = [
   {
     key: "pallet",
-    label: "Pallet racking",
-    bayDepth: 1.1,
-    bayWidth: 2.7,
-    levelPitch: 1.65,
-    topClearance: 0.6,
-    positionsPerLevel: 2,
-    positionLabel: "pallet positions",
-    volumePerPosition: 1.6,
+    label: "Medium duty rack (2 m)",
+    bayDepth: 0.5,
+    bayWidth: 2,
+    levelPitch: 0.625,
+    topClearance: 0,
+    positionsPerLevel: 1,
+    positionLabel: "shelf levels",
+    volumePerPosition: 0.6,
+    standardLevels: 4,
+    loadPerLevel: 220,
+    pricePerBay: 950000,
   },
   {
     key: "gondola",
-    label: "Gondola shelving",
-    bayDepth: 0.5,
-    bayWidth: 1.25,
-    levelPitch: 0.42,
-    topClearance: 0.3,
+    label: "Supermarket shelving",
+    bayDepth: 0.45,
+    bayWidth: 0.9,
+    levelPitch: 0.36,
+    topClearance: 0,
     positionsPerLevel: 1,
-    positionLabel: "shelf bays",
-    volumePerPosition: 0.26,
+    positionLabel: "shelf levels",
+    volumePerPosition: 0.14,
+    standardLevels: 5,
+    loadPerLevel: 150,
+    pricePerBay: 450000,
   },
   {
     key: "boltless",
-    label: "Boltless metal racks",
-    bayDepth: 0.6,
-    bayWidth: 1.8,
-    levelPitch: 0.6,
-    topClearance: 0.3,
+    label: "Light duty rack (2 m)",
+    bayDepth: 0.5,
+    bayWidth: 2,
+    levelPitch: 0.625,
+    topClearance: 0,
     positionsPerLevel: 1,
     positionLabel: "shelf levels",
-    volumePerPosition: 0.65,
+    volumePerPosition: 0.6,
+    standardLevels: 4,
+    loadPerLevel: 170,
+    pricePerBay: 750000,
   },
 ] as const satisfies readonly SystemSpec[];
 
@@ -72,6 +91,10 @@ export type CapacityResult = {
   positions: number;
   storageVolume: number;
   utilisation: number;
+  /** Total rated load of the system, kg */
+  totalLoadKg: number;
+  /** Indicative catalogue cost, TZS VAT inclusive */
+  totalPrice: number;
 };
 
 const clampPositive = (n: number) => (Number.isFinite(n) && n > 0 ? n : 0);
@@ -96,6 +119,8 @@ export function calculateCapacity(input: CapacityInput): CapacityResult {
       positions: 0,
       storageVolume: 0,
       utilisation: 0,
+      totalLoadKg: 0,
+      totalPrice: 0,
     };
   }
 
@@ -105,10 +130,12 @@ export function calculateCapacity(input: CapacityInput): CapacityResult {
   const rows = modules * 2;
   const baysPerRow = Math.max(0, Math.floor((length - 0.6) / spec.bayWidth));
   const bays = rows * baysPerRow;
-  const levels = Math.max(
-    1,
-    Math.floor((height - spec.topClearance) / spec.levelPitch),
-  );
+  // Catalogue units ship with a fixed number of levels; taller rooms simply
+  // allow the standard unit to stand, they do not add free levels.
+  const fits = height >= spec.levelPitch * spec.standardLevels;
+  const levels = fits
+    ? spec.standardLevels
+    : Math.max(1, Math.floor(height / spec.levelPitch));
   const positions = bays * levels * spec.positionsPerLevel;
   const usableArea = bays * spec.bayWidth * spec.bayDepth;
   const storageVolume = positions * spec.volumePerPosition;
@@ -123,8 +150,11 @@ export function calculateCapacity(input: CapacityInput): CapacityResult {
     positions,
     storageVolume,
     utilisation: floorArea ? Math.min(100, (usableArea / floorArea) * 100) : 0,
+    totalLoadKg: positions * spec.loadPerLevel,
+    totalPrice: bays * spec.pricePerBay,
   };
 }
+
 
 export type RoiInput = {
   /** Monthly rent per square metre, TZS */
