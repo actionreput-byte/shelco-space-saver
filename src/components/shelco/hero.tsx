@@ -6,13 +6,16 @@ import {
   SYSTEMS,
   calculateCapacity,
   formatNumber,
+  formatTzs,
   type SystemKey,
 } from "@/lib/calculators";
+import { useI18n } from "@/i18n";
 import { CountUp } from "./motion-primitives";
 
 type Props = { onCapacityChange?: (positions: number) => void };
 
 export function Hero({ onCapacityChange }: Props) {
+  const { t } = useI18n();
   const [length, setLength] = useState(40);
   const [width, setWidth] = useState(20);
   const [height, setHeight] = useState(8);
@@ -31,11 +34,12 @@ export function Hero({ onCapacityChange }: Props) {
   }, [result.positions, onCapacityChange]);
 
   const fields = [
-    { label: "Length (m)", value: length, set: setLength, step: 1 },
-    { label: "Width (m)", value: width, set: setWidth, step: 1 },
-    { label: "Clear height (m)", value: height, set: setHeight, step: 0.5 },
-    { label: "Aisle width (m)", value: aisle, set: setAisle, step: 0.1 },
+    { label: t("calc.length"), value: length, set: setLength, step: 1 },
+    { label: t("calc.width"), value: width, set: setWidth, step: 1 },
+    { label: t("calc.height"), value: height, set: setHeight, step: 0.5 },
+    { label: t("calc.aisle"), value: aisle, set: setAisle, step: 0.1 },
   ];
+
 
   return (
     <section id="top" className="relative overflow-hidden">
