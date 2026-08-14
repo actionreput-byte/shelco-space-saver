@@ -8,6 +8,8 @@ import { RoiCalculator } from "@/components/shelco/roi-calculator";
 import { Portfolio } from "@/components/shelco/portfolio";
 import { Testimonials } from "@/components/shelco/testimonials";
 import { Blog } from "@/components/shelco/blog";
+import { ShopSection } from "@/components/shelco/shop";
+
 import { Contact } from "@/components/shelco/contact";
 import {
   SectorMarquee,
