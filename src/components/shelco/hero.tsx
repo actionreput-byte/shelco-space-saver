@@ -116,12 +116,9 @@ export function Hero({ onCapacityChange }: Props) {
               <Ruler className="h-4 w-4" />
             </span>
             <div className="min-w-0">
-              <h2 className="truncate text-lg font-extrabold">
-                Shelving capacity calculator
-              </h2>
-              <p className="text-xs text-muted-foreground">
-                Estimate what your space can really hold.
-              </p>
+              <h2 className="truncate text-lg font-extrabold">{t("calc.title")}</h2>
+              <p className="text-xs text-muted-foreground">{t("calc.subtitle")}</p>
+
             </div>
           </div>
 
