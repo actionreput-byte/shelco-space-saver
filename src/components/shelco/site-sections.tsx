@@ -123,7 +123,7 @@ export function SiteFooter() {
                   alt={t("footer.qrHint")}
                   width={104}
                   height={104}
-                  className="h-26 w-26 h-[104px] w-[104px]"
+                  className="h-[104px] w-[104px]"
                 />
               ) : (
                 <div className="h-[104px] w-[104px] animate-pulse rounded-lg bg-muted" />
