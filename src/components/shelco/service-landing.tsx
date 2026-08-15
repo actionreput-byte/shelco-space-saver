@@ -27,7 +27,8 @@ import { useI18n } from "@/i18n";
 import { localizeService } from "@/lib/services-data.sw";
 import type { ServiceData } from "@/lib/services-data";
 
-function CapacityMiniInner({ system }: { system: ServiceData["system"] }) {
+function CapacityMini({ system }: { system: ServiceData["system"] }) {
+  const { t } = useI18n();
   const [length, setLength] = useState(30);
   const [width, setWidth] = useState(20);
   const [height, setHeight] = useState(6);
