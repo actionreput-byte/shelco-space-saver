@@ -4,36 +4,17 @@ import { ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 import person1 from "@/assets/person-1.jpg";
 import person2 from "@/assets/person-2.jpg";
 import person3 from "@/assets/person-3.jpg";
+import { useI18n } from "@/i18n";
 import { SectionHeading } from "./motion-primitives";
 
 const TESTIMONIALS = [
-  {
-    photo: person1,
-    name: "Joseph M.",
-    role: "Operations Director, beverage distribution",
-    location: "Kurasini",
-    quote:
-      "Shelco redesigned our whole warehouse layout. We now hold almost 70% more pallets in the same building, and the racking has not moved a millimetre since installation.",
-  },
-  {
-    photo: person2,
-    name: "Neema K.",
-    role: "Retail Manager, supermarket group",
-    location: "Kariakoo",
-    quote:
-      "The gondola shelving transformed our shop floor. Products display beautifully, restocking is faster, and our customers can finally find everything.",
-  },
-  {
-    photo: person3,
-    name: "Hamisi S.",
-    role: "Warehouse Manager, spare parts",
-    location: "Changombe",
-    quote:
-      "From the site survey to installation the team was professional. The steel quality is genuinely heavy duty — exactly what we needed for engine parts.",
-  },
-];
+  { photo: person1, name: "Joseph M.", key: "testi.t1", location: "Kurasini" },
+  { photo: person2, name: "Neema K.", key: "testi.t2", location: "Kariakoo" },
+  { photo: person3, name: "Hamisi S.", key: "testi.t3", location: "Changombe" },
+] as const;
 
 export function Testimonials() {
+  const { t } = useI18n();
   const [index, setIndex] = useState(0);
   const [dir, setDir] = useState(1);
 
@@ -43,22 +24,19 @@ export function Testimonials() {
   };
 
   useEffect(() => {
-    const t = setInterval(() => {
+    const timer = setInterval(() => {
       setDir(1);
       setIndex((i) => (i + 1) % TESTIMONIALS.length);
     }, 6500);
-    return () => clearInterval(t);
+    return () => clearInterval(timer);
   }, []);
 
   const item = TESTIMONIALS[index]!;
+  const role = t(`${item.key}.role` as "testi.t1.role");
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
-      <SectionHeading
-        eyebrow="Client voices"
-        title="Trusted by businesses across Tanzania"
-        align="center"
-      />
+      <SectionHeading eyebrow={t("testi.eyebrow")} title={t("testi.title")} align="center" />
 
       <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-lift">
         <Quote className="absolute right-5 top-5 h-10 w-10 text-primary-soft" />
@@ -83,12 +61,12 @@ export function Testimonials() {
               ))}
             </div>
             <blockquote className="mt-4 text-lg leading-relaxed">
-              “{item.quote}”
+              “{t(`${item.key}.quote` as "testi.t1.quote")}”
             </blockquote>
             <figcaption className="mt-5 flex min-w-0 items-center gap-3">
               <img
                 src={item.photo}
-                alt={`${item.name}, ${item.role}`}
+                alt={`${item.name}, ${role}`}
                 loading="lazy"
                 width={640}
                 height={640}
@@ -97,7 +75,7 @@ export function Testimonials() {
               <div className="min-w-0">
                 <div className="truncate font-extrabold">{item.name}</div>
                 <div className="truncate text-sm text-muted-foreground">
-                  {item.role} · {item.location}
+                  {role} · {item.location}
                 </div>
               </div>
             </figcaption>
@@ -106,11 +84,11 @@ export function Testimonials() {
 
         <div className="mt-6 flex items-center justify-between">
           <div className="flex gap-2">
-            {TESTIMONIALS.map((t, i) => (
+            {TESTIMONIALS.map((item2, i) => (
               <button
-                key={t.name}
+                key={item2.name}
                 type="button"
-                aria-label={`Show testimonial from ${t.name}`}
+                aria-label={item2.name}
                 onClick={() => go(i)}
                 className={`h-2 rounded-full transition-all ${
                   i === index ? "w-8 bg-primary" : "w-2 bg-border"
@@ -121,7 +99,7 @@ export function Testimonials() {
           <div className="flex gap-2">
             <button
               type="button"
-              aria-label="Previous testimonial"
+              aria-label="Previous"
               onClick={() => go(index - 1)}
               className="grid h-9 w-9 place-items-center rounded-lg border border-border transition-colors hover:border-primary hover:text-primary"
             >
@@ -129,7 +107,7 @@ export function Testimonials() {
             </button>
             <button
               type="button"
-              aria-label="Next testimonial"
+              aria-label="Next"
               onClick={() => go(index + 1)}
               className="grid h-9 w-9 place-items-center rounded-lg border border-border transition-colors hover:border-primary hover:text-primary"
             >

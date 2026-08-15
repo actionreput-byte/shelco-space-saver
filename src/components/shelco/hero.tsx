@@ -16,6 +16,12 @@ type Props = { onCapacityChange?: (positions: number) => void };
 
 export function Hero({ onCapacityChange }: Props) {
   const { t } = useI18n();
+  const sysLabel = (key: SystemKey) =>
+    key === "pallet"
+      ? t("calc.sys.pallet")
+      : key === "gondola"
+        ? t("calc.sys.gondola")
+        : t("calc.sys.boltless");
   const [length, setLength] = useState(40);
   const [width, setWidth] = useState(20);
   const [height, setHeight] = useState(8);
@@ -45,7 +51,7 @@ export function Hero({ onCapacityChange }: Props) {
     <section id="top" className="relative overflow-hidden">
       <motion.img
         src={heroImg}
-        alt="Warehouse interior with tall steel pallet racking loaded with palletised cargo"
+        alt={t("hero.imgAlt")}
         className="absolute inset-0 h-full w-full object-cover"
         width={1440}
         height={1026}
@@ -64,7 +70,7 @@ export function Hero({ onCapacityChange }: Props) {
             transition={{ delay: 0.1 }}
             className="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-primary-foreground"
           >
-            Dar es Salaam · Since day one
+            {t("hero.badge")}
           </motion.span>
 
           <motion.h1
@@ -73,9 +79,9 @@ export function Hero({ onCapacityChange }: Props) {
             transition={{ delay: 0.18, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="mt-4 text-balance-tight text-4xl font-extrabold leading-[1.02] sm:text-5xl lg:text-6xl"
           >
-            Efficient Storage.
+            {t("hero.title1")}
             <span className="block bg-clip-text text-transparent brand-gradient">
-              Maximum Space Utilisation.
+              {t("hero.title2")}
             </span>
           </motion.h1>
 
@@ -85,9 +91,7 @@ export function Hero({ onCapacityChange }: Props) {
             transition={{ delay: 0.28 }}
             className="mt-4 max-w-xl text-base leading-relaxed text-steel-foreground/80 sm:text-lg"
           >
-            Dexion-style racking and boltless shelving engineered in high grade
-            Q235 steel — from a single shelf at home to a full warehouse pallet
-            racking system.
+            {t("hero.sub")}
           </motion.p>
 
           <motion.div
@@ -100,7 +104,7 @@ export function Hero({ onCapacityChange }: Props) {
               href="#contact"
               className="inline-flex items-center gap-2 rounded-lg brand-gradient px-5 py-3 font-bold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5 active:scale-95"
             >
-              Get a free space audit <ArrowRight className="h-4 w-4" />
+              {t("hero.cta")} <ArrowRight className="h-4 w-4" />
             </a>
           </motion.div>
         </div>
@@ -134,7 +138,7 @@ export function Hero({ onCapacityChange }: Props) {
                     : "border-border bg-background text-muted-foreground hover:border-primary/60"
                 }`}
               >
-                {s.label}
+                {sysLabel(s.key)}
               </button>
             ))}
           </div>
@@ -159,7 +163,7 @@ export function Hero({ onCapacityChange }: Props) {
 
           <div className="mt-5 grid grid-cols-2 gap-3">
             <ResultTile label={t("calc.units")} value={result.bays} highlight />
-            <ResultTile label={spec.positionLabel} value={result.positions} />
+            <ResultTile label={t("calc.positions")} value={result.positions} />
             <ResultTile label={t("calc.levels")} value={result.levels} />
             <ResultTile label={t("calc.load")} value={result.totalLoadKg} />
           </div>
@@ -172,15 +176,17 @@ export function Hero({ onCapacityChange }: Props) {
               {formatTzs(result.totalPrice)}
             </p>
             <p className="text-[11px] text-muted-foreground">
-              {result.bays} × {spec.label} — {formatTzs(spec.pricePerBay)} {t("shop.vat")}
+              {result.bays} × {sysLabel(spec.key)} — {formatTzs(spec.pricePerBay)} {t("shop.vat")}
             </p>
           </div>
 
           <p className="mt-4 rounded-lg bg-muted px-3 py-2 text-xs text-muted-foreground">
 
-            Floor area {formatNumber(result.floorArea)} m² ·{" "}
-            {formatNumber(result.utilisation, 1)}% covered by racking with{" "}
-            {formatNumber(result.rows)} rows.
+            {t("calc.footnote", {
+              area: formatNumber(result.floorArea),
+              util: formatNumber(result.utilisation, 1),
+              rows: formatNumber(result.rows),
+            })}
           </p>
         </motion.div>
       </div>
