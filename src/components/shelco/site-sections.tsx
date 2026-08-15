@@ -1,36 +1,43 @@
+import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import QRCode from "qrcode";
 import logoAsset from "@/assets/shelco-logo.asset.json";
+import { useI18n } from "@/i18n";
 import { CountUp, Reveal } from "./motion-primitives";
 
+const SITE = "https://shelco-space-wizard.lovable.app";
+
 const STATS = [
-  { value: 420, suffix: "+", label: "Installations delivered" },
-  { value: 38000, suffix: "+", label: "Pallet positions built" },
-  { value: 12, suffix: "", label: "Years in Dar es Salaam" },
-  { value: 94, suffix: "%", label: "Clients who order again" },
-];
+  { value: 420, suffix: "+", key: "stats.installs" },
+  { value: 38000, suffix: "+", key: "stats.positions" },
+  { value: 12, suffix: "", key: "stats.years" },
+  { value: 94, suffix: "%", key: "stats.repeat" },
+] as const;
 
 const MARQUEE = [
-  "Warehousing",
-  "Supermarkets",
-  "Pharmaceuticals",
-  "Spare parts",
-  "Logistics",
-  "Manufacturing",
-  "Cold chain",
-  "Hardware retail",
-];
+  "sector.warehousing",
+  "sector.supermarkets",
+  "sector.pharma",
+  "sector.spares",
+  "sector.logistics",
+  "sector.manufacturing",
+  "sector.cold",
+  "sector.hardware",
+] as const;
 
 export function StatsStrip() {
+  const { t } = useI18n();
   return (
     <section className="border-y border-border bg-card">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-8 sm:grid-cols-4">
         {STATS.map((s, i) => (
-          <Reveal key={s.label} delay={i * 0.08}>
+          <Reveal key={s.key} delay={i * 0.08}>
             <div>
               <div className="font-display text-3xl font-extrabold text-primary sm:text-4xl">
                 <CountUp value={s.value} suffix={s.suffix} />
               </div>
               <div className="mt-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                {s.label}
+                {t(s.key)}
               </div>
             </div>
           </Reveal>
@@ -41,6 +48,7 @@ export function StatsStrip() {
 }
 
 export function SectorMarquee() {
+  const { t } = useI18n();
   return (
     <div className="overflow-hidden border-y border-border bg-muted/60 py-3">
       <div className="marquee-track flex w-max gap-8 whitespace-nowrap">
@@ -49,7 +57,7 @@ export function SectorMarquee() {
             key={`${m}-${i}`}
             className="text-sm font-bold uppercase tracking-[0.2em] text-muted-foreground"
           >
-            {m}
+            {t(m)}
           </span>
         ))}
       </div>
@@ -58,9 +66,21 @@ export function SectorMarquee() {
 }
 
 export function SiteFooter() {
+  const { t } = useI18n();
+  const [qr, setQr] = useState<string | null>(null);
+
+  useEffect(() => {
+    const target = window.location.origin || SITE;
+    void QRCode.toDataURL(target, {
+      width: 320,
+      margin: 1,
+      color: { dark: "#1f2a44", light: "#ffffff" },
+    }).then(setQr);
+  }, []);
+
   return (
     <footer className="steel-gradient text-steel-foreground">
-      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:grid-cols-3">
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <img
             src={logoAsset.url}
@@ -70,25 +90,22 @@ export function SiteFooter() {
             height={64}
             className="h-10 w-auto rounded bg-background p-1"
           />
-          <p className="mt-3 text-sm text-steel-foreground/75">
-            Efficient storage and maximum space utilisation for Tanzanian
-            businesses.
-          </p>
+          <p className="mt-3 text-sm text-steel-foreground/75">{t("footer.tagline")}</p>
         </div>
         <div>
           <h3 className="text-sm font-extrabold uppercase tracking-wider">
-            Explore
+            {t("footer.explore")}
           </h3>
           <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
-            <li><a className="hover:text-primary" href="#about">About</a></li>
-            <li><a className="hover:text-primary" href="#services">Services</a></li>
-            <li><a className="hover:text-primary" href="#portfolio">Projects</a></li>
-            <li><a className="hover:text-primary" href="#blog">Insights</a></li>
+            <li><a className="hover:text-primary" href="/#about">{t("nav.about")}</a></li>
+            <li><a className="hover:text-primary" href="/#services">{t("nav.services")}</a></li>
+            <li><a className="hover:text-primary" href="/#portfolio">{t("nav.projects")}</a></li>
+            <li><a className="hover:text-primary" href="/#blog">{t("nav.insights")}</a></li>
           </ul>
         </div>
         <div>
           <h3 className="text-sm font-extrabold uppercase tracking-wider">
-            Contact
+            {t("footer.contact")}
           </h3>
           <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
             <li>Changombe, Mwakalinga Road, Dar-es-Salaam</li>
@@ -96,10 +113,33 @@ export function SiteFooter() {
             <li><a className="hover:text-primary" href="mailto:sales@shelcosystems.com">sales@shelcosystems.com</a></li>
           </ul>
         </div>
+        <div>
+          <h3 className="text-sm font-extrabold uppercase tracking-wider">{t("footer.qr")}</h3>
+          <div className="mt-3 flex items-center gap-3">
+            <div className="rounded-xl bg-background p-2">
+              {qr ? (
+                <img
+                  src={qr}
+                  alt={t("footer.qrHint")}
+                  width={104}
+                  height={104}
+                  className="h-26 w-26 h-[104px] w-[104px]"
+                />
+              ) : (
+                <div className="h-[104px] w-[104px] animate-pulse rounded-lg bg-muted" />
+              )}
+            </div>
+            <div className="min-w-0 text-sm text-steel-foreground/80">
+              <p>{t("footer.qrHint")}</p>
+              <Link to="/get-app" className="mt-2 inline-block font-bold text-primary hover:underline">
+                {t("footer.qrLink")}
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
       <div className="border-t border-steel-foreground/15 px-4 py-4 text-center text-xs text-steel-foreground/60">
-        © {new Date().getFullYear()} Shelco Storage Systems Ltd. All rights
-        reserved.
+        © {new Date().getFullYear()} Shelco Storage Systems Ltd. {t("footer.rights")}
       </div>
     </footer>
   );
