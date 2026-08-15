@@ -24,9 +24,10 @@ import { Testimonials } from "@/components/shelco/testimonials";
 import { calculateCapacity, formatNumber } from "@/lib/calculators";
 import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/i18n";
+import { localizeService } from "@/lib/services-data.sw";
 import type { ServiceData } from "@/lib/services-data";
 
-function CapacityMini({ system }: { system: ServiceData["system"] }) {
+function CapacityMiniInner({ system }: { system: ServiceData["system"] }) {
   const [length, setLength] = useState(30);
   const [width, setWidth] = useState(20);
   const [height, setHeight] = useState(6);
@@ -60,38 +61,38 @@ function CapacityMini({ system }: { system: ServiceData["system"] }) {
 
   return (
     <div className="rounded-2xl border border-border bg-card/95 p-4 shadow-xl backdrop-blur sm:p-5">
-      <p className="text-sm font-bold text-secondary">Free capacity calculator</p>
+      <p className="text-sm font-bold text-secondary">{t("svc.calcTitle")}</p>
       <div className="mt-3 grid grid-cols-2 gap-3">
-        {field("Length (m)", length, setLength)}
-        {field("Width (m)", width, setWidth)}
-        {field("Height (m)", height, setHeight, 0.5)}
-        {field("Aisle (m)", aisle, setAisle, 0.1)}
+        {field(t("calc.length"), length, setLength)}
+        {field(t("calc.width"), width, setWidth)}
+        {field(t("calc.height"), height, setHeight, 0.5)}
+        {field(t("calc.aisle"), aisle, setAisle, 0.1)}
       </div>
       <div className="mt-4 grid grid-cols-3 gap-2 text-center">
         <div className="rounded-xl bg-muted/70 p-3">
           <p className="text-lg font-extrabold text-primary">
             <CountUp value={result.positions} />
           </p>
-          <p className="text-[11px] font-semibold text-muted-foreground">Positions</p>
+          <p className="text-[11px] font-semibold text-muted-foreground">{t("svc.positions")}</p>
         </div>
         <div className="rounded-xl bg-muted/70 p-3">
           <p className="text-lg font-extrabold text-primary">
             <CountUp value={result.bays} />
           </p>
-          <p className="text-[11px] font-semibold text-muted-foreground">Bays</p>
+          <p className="text-[11px] font-semibold text-muted-foreground">{t("svc.bays")}</p>
         </div>
         <div className="rounded-xl bg-muted/70 p-3">
           <p className="text-lg font-extrabold text-primary">
             {formatNumber(result.storageVolume)}
           </p>
-          <p className="text-[11px] font-semibold text-muted-foreground">m³ storage</p>
+          <p className="text-[11px] font-semibold text-muted-foreground">{t("svc.volume")}</p>
         </div>
       </div>
       <a
         href="#booking"
         className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg brand-gradient px-4 py-3 font-bold text-primary-foreground shadow-glow"
       >
-        Get my exact layout <ArrowRight className="h-4 w-4" />
+        {t("svc.layoutCta")} <ArrowRight className="h-4 w-4" />
       </a>
     </div>
   );
@@ -106,9 +107,9 @@ function BookingForm({ service }: { service: string }) {
     <section id="booking" className="bg-secondary/5 py-14">
       <div className="mx-auto max-w-3xl px-4">
         <SectionHeading
-          eyebrow="Book now"
-          title="Request your free site visit"
-          description="Tell us about your space and our team will call you back with a layout and quotation."
+          eyebrow={t("svc.bookEyebrow")}
+          title={t("svc.bookTitle")}
+          description={t("svc.bookDesc")}
         />
         <Reveal>
           <form
@@ -128,7 +129,7 @@ function BookingForm({ service }: { service: string }) {
               });
               setSending(false);
               if (error) {
-                toast.error("Could not send. Please call +255 767 224 466.");
+                toast.error(t("svc.error"));
                 return;
               }
               setDone(true);
@@ -171,7 +172,7 @@ function BookingForm({ service }: { service: string }) {
               disabled={sending}
               className="rounded-lg brand-gradient px-4 py-3 font-bold text-primary-foreground shadow-glow disabled:opacity-60 sm:col-span-2"
             >
-              {sending ? "Sending…" : t("cta.book")}
+              {sending ? t("svc.sending") : t("cta.book")}
             </button>
             {done ? (
               <p className="text-sm font-semibold text-primary sm:col-span-2">{t("form.sent")}</p>
@@ -183,7 +184,9 @@ function BookingForm({ service }: { service: string }) {
   );
 }
 
-export function ServiceLanding({ service }: { service: ServiceData }) {
+export function ServiceLanding({ service: base }: { service: ServiceData }) {
+  const { lang, t } = useI18n();
+  const service = localizeService(base, lang);
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
@@ -217,7 +220,7 @@ export function ServiceLanding({ service }: { service: ServiceData }) {
                   href="#booking"
                   className="inline-flex items-center gap-2 rounded-lg brand-gradient px-5 py-3 font-bold text-primary-foreground shadow-glow"
                 >
-                  Free site visit <ArrowRight className="h-4 w-4" />
+                  {t("svc.freeVisit")} <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                   href="tel:+255767224466"
@@ -235,18 +238,18 @@ export function ServiceLanding({ service }: { service: ServiceData }) {
 
         <div className="py-8">
           <SocialProofStrip
-            quote="Warehouse, retail and workshop operators across Tanzania rely on Shelco steel every day."
+            quote={t("sp1.quote")}
             metric="420+"
-            metricLabel="Projects installed"
+            metricLabel={t("sp1.label")}
           />
         </div>
 
         <section className="py-14">
           <div className="mx-auto max-w-6xl px-4">
             <SectionHeading
-              eyebrow="What you get"
-              title={`${service.name} built for Tanzanian conditions`}
-              description="Manufactured in high-grade Q235 steel, powder-coated and installed by our own fitting teams."
+              eyebrow={t("svc.whatEyebrow")}
+              title={t("svc.whatTitle", { name: service.name })}
+              description={t("svc.whatDesc")}
             />
             <Stagger className="mt-8 grid gap-4 sm:grid-cols-3">
               {service.benefits.map((b) => (
@@ -285,9 +288,9 @@ export function ServiceLanding({ service }: { service: ServiceData }) {
 
         <div className="pb-8">
           <SocialProofStrip
-            quote="Every system is manufactured in high-grade Q235 steel and installed by our own fitting teams."
+            quote={t("sp3.quote")}
             metric="100%"
-            metricLabel="In-house installation"
+            metricLabel={t("sp3.label")}
           />
         </div>
 
@@ -296,7 +299,7 @@ export function ServiceLanding({ service }: { service: ServiceData }) {
 
         <section className="py-14">
           <div className="mx-auto max-w-3xl px-4">
-            <SectionHeading eyebrow="FAQ" title="Frequently asked questions" />
+            <SectionHeading eyebrow={t("svc.faqEyebrow")} title={t("faq.title")} />
             <Reveal>
               <Accordion type="single" collapsible className="mt-6">
                 {service.faqs.map((faq) => (
@@ -310,9 +313,9 @@ export function ServiceLanding({ service }: { service: ServiceData }) {
               </Accordion>
             </Reveal>
             <p className="mt-6 text-center text-sm text-muted-foreground">
-              Looking for something else?{" "}
+              {t("svc.more")}{" "}
               <Link to="/services" className="font-bold text-primary">
-                See all Shelco services
+                {t("svc.seeAll")}
               </Link>
             </p>
           </div>
