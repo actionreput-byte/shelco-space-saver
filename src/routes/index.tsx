@@ -17,6 +17,7 @@ import {
   StatsStrip,
 } from "@/components/shelco/site-sections";
 import { SocialProofStrip } from "@/components/shelco/motion-primitives";
+import { useI18n } from "@/i18n";
 
 const TITLE = "Shelco Storage Systems | Racking & Shelving Dar es Salaam";
 const DESCRIPTION =
@@ -37,6 +38,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { t } = useI18n();
   const [positions, setPositions] = useState(0);
   const handleCapacity = useCallback((p: number) => setPositions(p), []);
 
@@ -49,9 +51,9 @@ function Index() {
 
         <div className="py-8">
           <SocialProofStrip
-            quote="Warehouse, retail and workshop operators across Tanzania rely on Shelco steel every day."
+            quote={t("sp1.quote")}
             metric="420+"
-            metricLabel="Projects installed"
+            metricLabel={t("sp1.label")}
           />
         </div>
 
@@ -59,9 +61,9 @@ function Index() {
 
         <div className="pb-8">
           <SocialProofStrip
-            quote="Rated 4.9 out of 5 by clients for build quality, fitting and after-sales support."
+            quote={t("sp2.quote")}
             metric="4.9/5"
-            metricLabel="Average client rating"
+            metricLabel={t("sp2.label")}
           />
         </div>
 
@@ -72,9 +74,9 @@ function Index() {
 
         <div className="py-8">
           <SocialProofStrip
-            quote="Every system is manufactured in high-grade Q235 steel and installed by our own fitting teams."
+            quote={t("sp3.quote")}
             metric="100%"
-            metricLabel="In-house installation"
+            metricLabel={t("sp3.label")}
           />
         </div>
 
@@ -82,9 +84,9 @@ function Index() {
 
         <div className="pb-8">
           <SocialProofStrip
-            quote="Clients typically recover their investment within the first year of operation."
+            quote={t("sp4.quote")}
             metric="< 12 mo"
-            metricLabel="Typical payback"
+            metricLabel={t("sp4.label")}
           />
         </div>
 
@@ -93,9 +95,9 @@ function Index() {
 
         <div className="pb-8">
           <SocialProofStrip
-            quote="From a single home shelf to a full warehouse fit-out — same engineering standard."
+            quote={t("sp5.quote")}
             metric="38,000+"
-            metricLabel="Pallet positions built"
+            metricLabel={t("sp5.label")}
           />
         </div>
 
