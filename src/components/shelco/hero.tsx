@@ -6,7 +6,6 @@ import {
   SYSTEMS,
   calculateCapacity,
   formatNumber,
-  formatTzs,
   type SystemKey,
 } from "@/lib/calculators";
 import { useI18n } from "@/i18n";
@@ -170,14 +169,12 @@ export function Hero({ onCapacityChange }: Props) {
 
           <div className="mt-3 rounded-xl border border-primary/40 bg-primary-soft px-3 py-2.5">
             <p className="text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
-              {t("calc.price")}
+              {t("calc.system")}
             </p>
             <p className="font-display text-xl font-extrabold text-primary">
-              {formatTzs(result.totalPrice)}
+              {result.bays} × {sysLabel(spec.key)}
             </p>
-            <p className="text-[11px] text-muted-foreground">
-              {result.bays} × {sysLabel(spec.key)} — {formatTzs(spec.pricePerBay)} {t("shop.vat")}
-            </p>
+            <p className="text-[11px] text-muted-foreground">{t("calc.quoteHint")}</p>
           </div>
 
           <p className="mt-4 rounded-lg bg-muted px-3 py-2 text-xs text-muted-foreground">

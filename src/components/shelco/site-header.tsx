@@ -5,6 +5,7 @@ import { ChevronDown, Globe, LogIn, Menu, Phone, Smartphone, X } from "lucide-re
 import { useAuth } from "@/hooks/useAuth";
 import { useI18n } from "@/i18n";
 import { SERVICES } from "@/lib/services-data";
+import { PRIMARY_PHONE } from "@/lib/contact-info";
 import logoAsset from "@/assets/shelco-logo.asset.json";
 
 export function SiteHeader() {
@@ -18,7 +19,7 @@ export function SiteHeader() {
     { label: t("nav.about"), href: "/#about" },
     { label: t("nav.roi"), href: "/#roi" },
     { label: t("nav.projects"), href: "/#portfolio" },
-    { label: t("nav.insights"), href: "/#blog" },
+    { label: t("nav.insights"), href: "/blog" },
     { label: t("nav.contact"), href: "/#contact" },
   ];
 
@@ -122,7 +123,7 @@ export function SiteHeader() {
             {user ? t("cta.dashboard") : t("cta.portal")}
           </Link>
           <a
-            href="tel:+255767224466"
+            href={`tel:${PRIMARY_PHONE.tel}`}
             className="inline-flex items-center gap-2 rounded-lg brand-gradient px-3 py-2 text-sm font-bold text-primary-foreground shadow-glow transition-transform active:scale-95"
           >
             <Phone className="h-4 w-4" />

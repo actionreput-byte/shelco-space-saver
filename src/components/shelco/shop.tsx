@@ -8,10 +8,8 @@ import {
   StaggerItem,
 } from "@/components/shelco/motion-primitives";
 import { CATEGORIES, FREE_SERVICES, PRODUCTS, type ProductCategory } from "@/lib/products-data";
-import { formatTzs } from "@/lib/calculators";
 import { useI18n } from "@/i18n";
-
-const WHATSAPP = "255767224466";
+import { PRIMARY_PHONE, waLink } from "@/lib/contact-info";
 
 export function ProductGrid({ limit }: { limit?: number }) {
   const { lang, t } = useI18n();
@@ -79,16 +77,13 @@ export function ProductGrid({ limit }: { limit?: number }) {
                 <p className="text-[11px] text-muted-foreground">
                   {lang === "sw" ? p.notesSw : p.notes}
                 </p>
-                <p className="mt-auto pt-2 font-display text-base font-extrabold text-primary">
-                  {formatTzs(p.price)}
-                </p>
-                <p className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
-                  {t("shop.vat")}
+                <p className="mt-auto pt-2 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  {t("shop.quote")}
                 </p>
                 <a
-                  href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(
-                    `Habari Shelco, I would like to order: ${p.name} (${p.dims}) — ${formatTzs(p.price)}`,
-                  )}`}
+                  href={waLink(
+                    `Habari Shelco, I would like a quote for: ${p.name} (${p.dims})`,
+                  )}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-lg brand-gradient px-3 py-2 text-xs font-bold text-primary-foreground shadow-glow active:scale-95"
@@ -133,7 +128,7 @@ export function ShopSection() {
         </div>
         <Reveal>
           <a
-            href="tel:+255767224466"
+            href={`tel:${PRIMARY_PHONE.tel}`}
             className="mt-6 inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-3 font-bold text-secondary"
           >
             <Phone className="h-4 w-4" /> {t("cta.call")}
