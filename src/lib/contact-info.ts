@@ -7,7 +7,7 @@ export const PHONES: PhoneEntry[] = [
   { display: "+255 749 809 809", tel: "+255749809809", wa: "255749809809" },
 ];
 
-export const PRIMARY_PHONE = PHONES[0];
+export const PRIMARY_PHONE: PhoneEntry = PHONES[0]!;
 export const WHATSAPP = PRIMARY_PHONE.wa;
 
 export const EMAILS = ["sales1.shelcosystems@gmail.com", "sales2.shelcosystems@gmail.com"];
