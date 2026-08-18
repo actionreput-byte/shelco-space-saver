@@ -26,6 +26,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useI18n } from "@/i18n";
 import { localizeService } from "@/lib/services-data.sw";
 import type { ServiceData } from "@/lib/services-data";
+import { ADDRESS, COMPANY_NAME, PRIMARY_EMAIL, PRIMARY_PHONE } from "@/lib/contact-info";
 
 function CapacityMini({ system }: { system: ServiceData["system"] }) {
   const { t } = useI18n();
@@ -224,10 +225,10 @@ export function ServiceLanding({ service: base }: { service: ServiceData }) {
                   {t("svc.freeVisit")} <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
-                  href="tel:+255767224466"
+                  href={`tel:${PRIMARY_PHONE.tel}`}
                   className="inline-flex items-center gap-2 rounded-lg border border-primary-foreground/40 px-5 py-3 font-bold text-primary-foreground"
                 >
-                  <Phone className="h-4 w-4" /> +255 767 224 466
+                  <Phone className="h-4 w-4" /> {PRIMARY_PHONE.display}
                 </a>
               </div>
             </motion.div>
@@ -342,13 +343,14 @@ export function serviceJsonLd(service: ServiceData, url: string) {
         areaServed: { "@type": "Place", name: "Dar es Salaam, Tanzania" },
         provider: {
           "@type": "LocalBusiness",
-          name: "Shelco Storage Systems Ltd",
-          telephone: "+255767224466",
+          name: COMPANY_NAME,
+          telephone: PRIMARY_PHONE.tel,
+          email: PRIMARY_EMAIL,
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Mwakalinga Road, Changombe",
-            addressLocality: "Dar es Salaam",
-            addressCountry: "TZ",
+            streetAddress: ADDRESS.street,
+            addressLocality: ADDRESS.city,
+            addressCountry: ADDRESS.countryCode,
           },
         },
       },

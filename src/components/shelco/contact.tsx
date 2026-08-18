@@ -3,6 +3,7 @@ import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { toast } from "sonner";
 import { useI18n } from "@/i18n";
 import { Reveal, SectionHeading } from "./motion-primitives";
+import { ADDRESS, COMPANY_NAME, EMAILS, MAPS_URL, PHONES } from "@/lib/contact-info";
 
 export function Contact() {
   const { t } = useI18n();
@@ -26,51 +27,51 @@ export function Contact() {
         <div className="grid gap-4 lg:grid-cols-2">
           <Reveal>
             <div className="h-full rounded-2xl border border-border bg-card p-5 shadow-lift">
-              <h3 className="text-lg font-extrabold">SHELCO STORAGE SYSTEMS LTD</h3>
+              <h3 className="text-lg font-extrabold">{COMPANY_NAME.toUpperCase()}</h3>
 
               <ul className="mt-4 space-y-4 text-sm">
                 <li className="flex gap-3">
                   <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <span className="min-w-0">
-                    Changombe, Mwakalinga Road, Dar-es-Salaam, Tanzania
+                    {ADDRESS.street}, {ADDRESS.city}, {ADDRESS.country}
                     <br />
                     <span className="text-muted-foreground">
-                      P.O. Box 100053, Dar-es-Salaam
+                      {ADDRESS.poBox}, {ADDRESS.city}
                     </span>
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <span className="min-w-0">
-                    <a href="tel:+255767224466" className="block font-semibold hover:text-primary">
-                      +255-767-224466
-                    </a>
-                    <a href="tel:+255683809809" className="block font-semibold hover:text-primary">
-                      +255-683-809809
-                    </a>
+                    {PHONES.map((p) => (
+                      <a
+                        key={p.tel}
+                        href={`tel:${p.tel}`}
+                        className="block font-semibold hover:text-primary"
+                      >
+                        {p.display}
+                      </a>
+                    ))}
                   </span>
                 </li>
                 <li className="flex gap-3">
                   <Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <span className="min-w-0 break-words">
-                    <a
-                      href="mailto:sales@shelcosystems.com"
-                      className="block font-semibold hover:text-primary"
-                    >
-                      sales@shelcosystems.com
-                    </a>
-                    <a
-                      href="mailto:sales1.shelcosystems@gmail.com"
-                      className="block font-semibold hover:text-primary"
-                    >
-                      sales1.shelcosystems@gmail.com
-                    </a>
+                    {EMAILS.map((email) => (
+                      <a
+                        key={email}
+                        href={`mailto:${email}`}
+                        className="block font-semibold hover:text-primary"
+                      >
+                        {email}
+                      </a>
+                    ))}
                   </span>
                 </li>
               </ul>
 
               <a
-                href="https://www.google.com/maps/search/?api=1&query=Mwakalinga+Road+Changombe+Dar+es+Salaam"
+                href={MAPS_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-5 inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-bold transition-colors hover:border-primary hover:text-primary"
