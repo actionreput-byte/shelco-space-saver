@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "11c875d7-2a81-4377-8d84-439cbc4b1dec",
-  "project_id": "2e279fba-fbd6-4581-8c64-16cc1e1f5f9c",
-  "url": "/__l5e/assets-v1/11c875d7-2a81-4377-8d84-439cbc4b1dec/basket-metal.jpg",
-  "r2_key": "a/v1/2e279fba-fbd6-4581-8c64-16cc1e1f5f9c/11c875d7-2a81-4377-8d84-439cbc4b1dec/basket-metal.jpg",
-  "original_filename": "basket-metal.jpg",
-  "size": 362267,
   "content_type": "image/jpeg",
-  "created_at": "2026-08-14T20:14:39Z"
+  "created_at": "2026-08-14T20:14:39Z",
+  "original_filename": "basket-metal.jpg",
+  "project_id": "25c3ab67-b419-4f4e-9e6c-06964774ea0b",
+  "r2_key": "a/v1/25c3ab67-b419-4f4e-9e6c-06964774ea0b/11c875d7-2a81-4377-8d84-439cbc4b1dec/basket-metal.jpg",
+  "size": 362267,
+  "url": "/__l5e/assets-v1/11c875d7-2a81-4377-8d84-439cbc4b1dec/basket-metal.jpg",
+  "version": 1
 }

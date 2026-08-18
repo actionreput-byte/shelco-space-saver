@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "77c0141f-15e7-4317-9332-d830353a153a",
-  "project_id": "2e279fba-fbd6-4581-8c64-16cc1e1f5f9c",
-  "url": "/__l5e/assets-v1/77c0141f-15e7-4317-9332-d830353a153a/rack-15m.jpg",
-  "r2_key": "a/v1/2e279fba-fbd6-4581-8c64-16cc1e1f5f9c/77c0141f-15e7-4317-9332-d830353a153a/rack-15m.jpg",
-  "original_filename": "rack-15m.jpg",
-  "size": 342513,
   "content_type": "image/jpeg",
-  "created_at": "2026-08-14T20:14:47Z"
+  "created_at": "2026-08-14T20:14:47Z",
+  "original_filename": "rack-15m.jpg",
+  "project_id": "25c3ab67-b419-4f4e-9e6c-06964774ea0b",
+  "r2_key": "a/v1/25c3ab67-b419-4f4e-9e6c-06964774ea0b/77c0141f-15e7-4317-9332-d830353a153a/rack-15m.jpg",
+  "size": 342513,
+  "url": "/__l5e/assets-v1/77c0141f-15e7-4317-9332-d830353a153a/rack-15m.jpg",
+  "version": 1
 }

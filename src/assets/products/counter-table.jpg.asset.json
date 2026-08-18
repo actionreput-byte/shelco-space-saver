@@ -1,11 +1,11 @@
 {
-  "version": 1,
   "asset_id": "ad6d013b-3fc1-4648-a132-012ae190dc26",
-  "project_id": "2e279fba-fbd6-4581-8c64-16cc1e1f5f9c",
-  "url": "/__l5e/assets-v1/ad6d013b-3fc1-4648-a132-012ae190dc26/counter-table.jpg",
-  "r2_key": "a/v1/2e279fba-fbd6-4581-8c64-16cc1e1f5f9c/ad6d013b-3fc1-4648-a132-012ae190dc26/counter-table.jpg",
-  "original_filename": "counter-table.jpg",
-  "size": 157821,
   "content_type": "image/jpeg",
-  "created_at": "2026-08-14T20:14:44Z"
+  "created_at": "2026-08-14T20:14:44Z",
+  "original_filename": "counter-table.jpg",
+  "project_id": "25c3ab67-b419-4f4e-9e6c-06964774ea0b",
+  "r2_key": "a/v1/25c3ab67-b419-4f4e-9e6c-06964774ea0b/ad6d013b-3fc1-4648-a132-012ae190dc26/counter-table.jpg",
+  "size": 157821,
+  "url": "/__l5e/assets-v1/ad6d013b-3fc1-4648-a132-012ae190dc26/counter-table.jpg",
+  "version": 1
 }
