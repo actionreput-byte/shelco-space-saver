@@ -72,12 +72,22 @@ function BlogPostPage() {
   const related = [
     ...post.relatedServices.map((s) => {
       const svc = getService(s);
-      return { to: `/services/${svc.slug}`, label: svc.name, description: svc.subhead };
+      return {
+        to: "/services/$slug",
+        params: { slug: svc.slug },
+        label: svc.name,
+        description: svc.subhead,
+      };
     }),
     ...post.relatedPosts
       .map((s) => BLOG_POSTS.find((p) => p.slug === s))
       .filter((p): p is (typeof BLOG_POSTS)[number] => Boolean(p))
-      .map((p) => ({ to: `/blog/${p.slug}`, label: p.title, description: p.excerpt })),
+      .map((p) => ({
+        to: "/blog/$slug",
+        params: { slug: p.slug },
+        label: p.title,
+        description: p.excerpt,
+      })),
     { to: "/shop", label: "Browse our products", description: "Racks, shelving, trolleys and baskets." },
   ];
 
