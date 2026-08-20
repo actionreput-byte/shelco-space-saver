@@ -28,7 +28,7 @@ const EN = {
   "chat.title": "Shelco Assistant",
   "chat.subtitle": "Storage advice · Free site visits",
   "chat.open": "Chat with Shelco",
-  "chat.placeholder": "Ask about racking, shelving or prices…",
+  "chat.placeholder": "Ask about racking, shelving or a quotation…",
   "chat.empty": "Habari! Ask me anything about racking, shelving or booking a free site visit.",
   "app.title": "Install the Shelco app",
   "app.subtitle":
