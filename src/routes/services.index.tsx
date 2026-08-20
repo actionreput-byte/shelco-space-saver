@@ -10,6 +10,8 @@ import {
   StaggerItem,
 } from "@/components/shelco/motion-primitives";
 import { SERVICES } from "@/lib/services-data";
+import { BLOG_POSTS } from "@/lib/blog-data";
+import { RelatedLinks } from "@/components/shelco/related-links";
 
 const TITLE = "Storage Services | Racking, Shelving & Accessories | Shelco Dar es Salaam";
 const DESCRIPTION =
@@ -96,6 +98,17 @@ function ServicesIndex() {
           </Reveal>
         </div>
       </main>
+      <div className="mx-auto max-w-6xl px-4 pb-12">
+        <RelatedLinks
+          title="Storage guides from our engineers"
+          links={BLOG_POSTS.map((b) => ({
+            to: "/blog/$slug",
+            params: { slug: b.slug },
+            label: b.title,
+            description: b.excerpt,
+          }))}
+        />
+      </div>
       <SiteFooter />
     </div>
   );
