@@ -1,16 +1,8 @@
-import blog1 from "@/assets/blog-1.jpg";
-import blog2 from "@/assets/blog-2.jpg";
-import blog3 from "@/assets/blog-3.jpg";
-import blog4 from "@/assets/blog-4.jpg";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 import { useI18n } from "@/i18n";
+import { BLOG_POSTS } from "@/lib/blog-data";
 import { SectionHeading, Stagger, StaggerItem } from "./motion-primitives";
-
-const POSTS = [
-  { image: blog1, key: "blog.b1", minutes: 5 },
-  { image: blog2, key: "blog.b2", minutes: 4 },
-  { image: blog3, key: "blog.b3", minutes: 6 },
-  { image: blog4, key: "blog.b4", minutes: 4 },
-] as const;
 
 export function Blog() {
   const { t } = useI18n();
@@ -24,11 +16,15 @@ export function Blog() {
       />
 
       <Stagger className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-        {POSTS.map((p) => {
+        {BLOG_POSTS.map((p) => {
           const title = t(`${p.key}.title` as "blog.b1.title");
           return (
-            <StaggerItem key={p.key}>
-              <article className="group h-full overflow-hidden rounded-2xl border border-border bg-card shadow-lift transition-transform duration-300 hover:-translate-y-1.5">
+            <StaggerItem key={p.slug}>
+              <Link
+                to="/blog/$slug"
+                params={{ slug: p.slug }}
+                className="group block h-full overflow-hidden rounded-2xl border border-border bg-card shadow-lift transition-transform duration-300 hover:-translate-y-1.5"
+              >
                 <img
                   src={p.image}
                   alt={title}
@@ -41,18 +37,27 @@ export function Blog() {
                   <span className="text-[10px] font-bold uppercase tracking-wider text-primary">
                     {t(`${p.key}.tag` as "blog.b1.tag")}
                   </span>
-                  <h3 className="mt-1 text-sm font-extrabold leading-snug sm:text-base">
+                  <h3 className="mt-1 text-sm font-extrabold leading-snug group-hover:text-primary sm:text-base">
                     {title}
                   </h3>
                   <p className="mt-2 text-[11px] text-muted-foreground">
                     {p.minutes} {t("blog.read")}
                   </p>
                 </div>
-              </article>
+              </Link>
             </StaggerItem>
           );
         })}
       </Stagger>
+
+      <div className="mt-6 text-center">
+        <Link
+          to="/blog"
+          className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-4 py-2.5 text-sm font-bold text-secondary transition-colors hover:border-primary hover:text-primary"
+        >
+          {t("blog.title")} <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
     </section>
   );
 }
