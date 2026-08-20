@@ -2,7 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "./motion-primitives";
 
-export type RelatedLink = { to: string; label: string; description?: string };
+export type RelatedLink = {
+  to: string;
+  params?: Record<string, string>;
+  label: string;
+  description?: string;
+};
 
 /**
  * Internal linking block (net-linking) — used across services, blog posts and
@@ -24,9 +29,10 @@ export function RelatedLinks({
         <SectionHeading eyebrow={eyebrow} title={title} />
         <ul className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {links.map((l) => (
-            <li key={l.to}>
+            <li key={l.label}>
               <Link
-                to={l.to}
+                to={l.to as never}
+                params={l.params as never}
                 className="group flex h-full flex-col rounded-2xl border border-border bg-card p-4 shadow-sm transition-transform hover:-translate-y-1 hover:border-primary/60"
               >
                 <span className="flex items-center gap-1.5 font-bold text-secondary group-hover:text-primary">

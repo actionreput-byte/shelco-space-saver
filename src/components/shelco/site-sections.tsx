@@ -3,6 +3,9 @@ import { Link } from "@tanstack/react-router";
 import QRCode from "qrcode";
 import logoAsset from "@/assets/shelco-logo.asset.json";
 import { useI18n } from "@/i18n";
+import { SERVICES } from "@/lib/services-data";
+import { BLOG_POSTS } from "@/lib/blog-data";
+import { ADDRESS_LINE, EMAILS, PHONES } from "@/lib/contact-info";
 import { CountUp, Reveal } from "./motion-primitives";
 
 const SITE = "https://shelco-space-wizard.lovable.app";
@@ -80,7 +83,7 @@ export function SiteFooter() {
 
   return (
     <footer className="steel-gradient text-steel-foreground">
-      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:grid-cols-2 lg:grid-cols-5">
         <div>
           <img
             src={logoAsset.url}
@@ -98,9 +101,37 @@ export function SiteFooter() {
           </h3>
           <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
             <li><a className="hover:text-primary" href="/#about">{t("nav.about")}</a></li>
-            <li><a className="hover:text-primary" href="/#services">{t("nav.services")}</a></li>
+            <li><Link className="hover:text-primary" to="/services">{t("nav.services")}</Link></li>
+            <li><Link className="hover:text-primary" to="/shop">{t("nav.shop")}</Link></li>
             <li><a className="hover:text-primary" href="/#portfolio">{t("nav.projects")}</a></li>
-            <li><a className="hover:text-primary" href="/#blog">{t("nav.insights")}</a></li>
+            <li><Link className="hover:text-primary" to="/blog">{t("nav.insights")}</Link></li>
+            <li><Link className="hover:text-primary" to="/get-app">{t("nav.getApp")}</Link></li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-sm font-extrabold uppercase tracking-wider">
+            {t("nav.services")}
+          </h3>
+          <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
+            {SERVICES.map((s) => (
+              <li key={s.slug}>
+                <Link className="hover:text-primary" to="/services/$slug" params={{ slug: s.slug }}>
+                  {s.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <h3 className="mt-5 text-sm font-extrabold uppercase tracking-wider">
+            {t("nav.insights")}
+          </h3>
+          <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
+            {BLOG_POSTS.map((p) => (
+              <li key={p.slug}>
+                <Link className="hover:text-primary" to="/blog/$slug" params={{ slug: p.slug }}>
+                  {p.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div>
@@ -108,9 +139,17 @@ export function SiteFooter() {
             {t("footer.contact")}
           </h3>
           <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
-            <li>Changombe, Mwakalinga Road, Dar-es-Salaam</li>
-            <li><a className="hover:text-primary" href="tel:+255767224466">+255-767-224466</a></li>
-            <li><a className="hover:text-primary" href="mailto:sales@shelcosystems.com">sales@shelcosystems.com</a></li>
+            <li>{ADDRESS_LINE}</li>
+            {PHONES.map((p) => (
+              <li key={p.tel}>
+                <a className="hover:text-primary" href={`tel:${p.tel}`}>{p.display}</a>
+              </li>
+            ))}
+            {EMAILS.map((email) => (
+              <li key={email} className="break-words">
+                <a className="hover:text-primary" href={`mailto:${email}`}>{email}</a>
+              </li>
+            ))}
           </ul>
         </div>
         <div>

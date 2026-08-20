@@ -93,7 +93,8 @@ function BlogIndex() {
           eyebrow="Our services"
           title="Storage systems we design and install"
           links={SERVICES.map((s) => ({
-            to: `/services/${s.slug}`,
+            to: "/services/$slug",
+            params: { slug: s.slug },
             label: s.name,
             description: s.subhead,
           }))}

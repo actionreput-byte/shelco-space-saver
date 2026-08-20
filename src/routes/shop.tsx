@@ -4,11 +4,14 @@ import { SiteFooter, StatsStrip } from "@/components/shelco/site-sections";
 import { SectionHeading, SocialProofStrip } from "@/components/shelco/motion-primitives";
 import { ProductGrid } from "@/components/shelco/shop";
 import { Testimonials } from "@/components/shelco/testimonials";
+import { RelatedLinks } from "@/components/shelco/related-links";
+import { SERVICES } from "@/lib/services-data";
+import { BLOG_POSTS } from "@/lib/blog-data";
 import { useI18n } from "@/i18n";
 
 const TITLE = "Shop Racks, Shelves & Trolleys | Shelco Dar es Salaam";
 const DESCRIPTION =
-  "Buy warehouse racks, supermarket shelving, counter tables, trolleys and baskets in Dar es Salaam. VAT inclusive prices with free site survey and installation.";
+  "Warehouse racks, supermarket shelving, counter tables, trolleys and baskets in Dar es Salaam. Request a free quotation, site survey and installation.";
 
 export const Route = createFileRoute("/shop")({
   head: () => ({
@@ -20,6 +23,7 @@ export const Route = createFileRoute("/shop")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: "https://shelco-space-wizard.lovable.app/shop" }],
   }),
   component: ShopPage,
 });
@@ -51,6 +55,25 @@ function ShopPage() {
           />
         </div>
         <Testimonials />
+        <div className="mx-auto max-w-6xl px-4 pb-12">
+          <RelatedLinks
+            title="Explore our services"
+            links={[
+              ...SERVICES.map((sv) => ({
+                to: "/services/$slug",
+                params: { slug: sv.slug },
+                label: sv.name,
+                description: sv.subhead,
+              })),
+              ...BLOG_POSTS.slice(0, 2).map((b) => ({
+                to: "/blog/$slug",
+                params: { slug: b.slug },
+                label: b.title,
+                description: b.excerpt,
+              })),
+            ]}
+          />
+        </div>
       </main>
       <SiteFooter />
     </div>

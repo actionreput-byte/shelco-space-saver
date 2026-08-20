@@ -17,8 +17,6 @@ export type Product = {
   nameSw: string;
   category: ProductCategory;
   image: string;
-  /** TZS, VAT inclusive */
-  price: number;
   duty?: "light" | "medium";
   dims: string;
   /** metres */
@@ -49,7 +47,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Rack nyepesi — 1 m",
     category: "warehouse",
     image: rack1m.url,
-    price: 500000,
     duty: "light",
     dims: "H 2.5 m × L 1 m × D 0.5 m",
     height: 2.5,
@@ -66,7 +63,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Rack ya wastani — 1 m",
     category: "warehouse",
     image: rack1m.url,
-    price: 650000,
     duty: "medium",
     dims: "H 2.5 m × L 1 m × D 0.5 m",
     height: 2.5,
@@ -83,7 +79,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Rack nyepesi — 1.5 m",
     category: "warehouse",
     image: rack15m.url,
-    price: 650000,
     duty: "light",
     dims: "H 2.5 m × L 1.5 m × D 0.5 m",
     height: 2.5,
@@ -100,7 +95,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Rack nyepesi — 2 m",
     category: "warehouse",
     image: rack2m.url,
-    price: 750000,
     duty: "light",
     dims: "H 2.5 m × L 2 m × D 0.5 m",
     height: 2.5,
@@ -117,7 +111,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Rack ya wastani — 2 m",
     category: "warehouse",
     image: rack2m.url,
-    price: 950000,
     duty: "medium",
     dims: "H 2.5 m × L 2 m × D 0.5 m",
     height: 2.5,
@@ -134,7 +127,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Shelf ya upande mmoja",
     category: "supermarket",
     image: shelfSingle.url,
-    price: 450000,
     dims: "H 180 cm × L 90 cm × D 45 cm (6ft × 3ft × 1.49ft)",
     height: 1.8,
     length: 0.9,
@@ -150,7 +142,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Shelf ya pande mbili",
     category: "supermarket",
     image: shelfDouble.url,
-    price: 650000,
     dims: "H 180 cm × L 90 cm × D 90 cm (6ft × 3ft × 2.98ft)",
     height: 1.8,
     length: 0.9,
@@ -166,7 +157,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Meza ya kaunta",
     category: "supermarket",
     image: counterTable.url,
-    price: 1700000,
     dims: "H 100 cm × L 120 cm × D 120 cm",
     height: 1,
     length: 1.2,
@@ -180,7 +170,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Toroli ya kusukuma",
     category: "accessories",
     image: trolleyPush.url,
-    price: 300000,
     dims: "Chrome steel shopping trolley",
     notes: "Heavy-gauge chrome trolley for supermarket floors.",
     notesSw: "Toroli imara ya chuma kwa maduka makubwa.",
@@ -191,7 +180,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Toroli ya plastiki",
     category: "accessories",
     image: trolleyPlastic.url,
-    price: 95000,
     dims: "Available in red and blue",
     notes: "Wheeled plastic basket trolley with long handle.",
     notesSw: "Kikapu cha plastiki chenye magurudumu na mpini mrefu.",
@@ -202,7 +190,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Kikapu cha chuma",
     category: "accessories",
     image: basketMetal.url,
-    price: 45000,
     dims: "Chrome hand basket",
     notes: "Durable chrome hand basket with folding handles.",
     notesSw: "Kikapu imara cha chuma chenye mipini inayokunjika.",
@@ -213,7 +200,6 @@ export const PRODUCTS: Product[] = [
     nameSw: "Kikapu cha plastiki",
     category: "accessories",
     image: basketPlastic.url,
-    price: 40000,
     dims: "Red plastic hand basket",
     notes: "Light hand basket for quick shopping trips.",
     notesSw: "Kikapu chepesi kwa manunuzi ya haraka.",
