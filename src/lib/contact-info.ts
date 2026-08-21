@@ -30,5 +30,8 @@ export const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encod
   `${ADDRESS.street} ${ADDRESS.city} ${ADDRESS.country}`,
 )}`;
 
-export const waLink = (text: string) =>
-  `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+/** Official Shelco WhatsApp short link — all WhatsApp buttons use this. */
+export const WHATSAPP_LINK = "https://wa.me/message/BS26NQP3L5SHI1";
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const waLink = (_text?: string) => WHATSAPP_LINK;

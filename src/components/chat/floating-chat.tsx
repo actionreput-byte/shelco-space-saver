@@ -18,7 +18,7 @@ import {
 import { Shimmer } from "@/components/ai-elements/shimmer";
 import { useAuth } from "@/hooks/useAuth";
 import { useI18n } from "@/i18n";
-import agentIcon from "@/assets/mascot.png";
+import agentIcon from "@/assets/agent-lady.png";
 
 const VISITOR_KEY = "shelco.visitorId";
 

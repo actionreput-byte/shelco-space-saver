@@ -13,6 +13,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "@/hooks/useAuth";
 import { I18nProvider } from "@/i18n";
 import { FloatingChat } from "@/components/chat/floating-chat";
+import { WhatsAppFab } from "@/components/shelco/whatsapp-fab";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -145,6 +146,7 @@ function RootComponent() {
         <I18nProvider>
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
+          <WhatsAppFab />
           <FloatingChat />
           <Toaster />
         </I18nProvider>
