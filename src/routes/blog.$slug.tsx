@@ -8,7 +8,7 @@ import { BLOG_POSTS, getPost } from "@/lib/blog-data";
 import { getService } from "@/lib/services-data";
 import { PRIMARY_PHONE } from "@/lib/contact-info";
 
-const SITE = "https://shelco-space-wizard.lovable.app";
+const SITE = "https://shelco-space-saver.lovable.app";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {

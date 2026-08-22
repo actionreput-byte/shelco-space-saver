@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/shelco/site-sections";
 import { Reveal, SectionHeading } from "@/components/shelco/motion-primitives";
 import { useI18n } from "@/i18n";
 
-const SITE = "https://shelco-space-wizard.lovable.app";
+const SITE = "https://shelco-space-saver.lovable.app";
 const TITLE = "Install the Shelco App | Order & Track Storage Systems";
 const DESCRIPTION =
   "Scan the QR code to install the Shelco Storage Systems app on your phone — place orders, track deliveries, chat with our team and receive promotions.";

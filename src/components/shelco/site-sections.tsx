@@ -8,7 +8,7 @@ import { BLOG_POSTS } from "@/lib/blog-data";
 import { ADDRESS_LINE, EMAILS, PHONES } from "@/lib/contact-info";
 import { CountUp, Reveal } from "./motion-primitives";
 
-const SITE = "https://shelco-space-wizard.lovable.app";
+const SITE = "https://shelco-space-saver.lovable.app";
 
 const STATS = [
   { value: 420, suffix: "+", key: "stats.installs" },
