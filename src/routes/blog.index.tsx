@@ -6,7 +6,7 @@ import { RelatedLinks } from "@/components/shelco/related-links";
 import { BLOG_POSTS } from "@/lib/blog-data";
 import { SERVICES } from "@/lib/services-data";
 
-const SITE = "https://shelco-space-wizard.lovable.app";
+const SITE = "https://shelco-space-saver.lovable.app";
 const TITLE = "Storage Insights Blog | Racking & Shelving Guides | Shelco";
 const DESCRIPTION =
   "Practical guides on warehouse racking, shop shelving, aisle width and racking safety from the Shelco engineering team in Dar es Salaam, Tanzania.";

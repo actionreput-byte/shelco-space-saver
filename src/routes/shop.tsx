@@ -23,7 +23,7 @@ export const Route = createFileRoute("/shop")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://shelco-space-wizard.lovable.app/shop" }],
+    links: [{ rel: "canonical", href: "https://shelco-space-saver.lovable.app/shop" }],
   }),
   component: ShopPage,
 });

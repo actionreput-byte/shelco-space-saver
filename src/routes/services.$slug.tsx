@@ -2,7 +2,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { ServiceLanding, serviceJsonLd } from "@/components/shelco/service-landing";
 import { SERVICES, type ServiceData, type ServiceSlug } from "@/lib/services-data";
 
-const SITE = "https://shelco-space-wizard.lovable.app";
+const SITE = "https://shelco-space-saver.lovable.app";
 
 function findService(slug: string): ServiceData | undefined {
   return SERVICES.find((s) => s.slug === (slug as ServiceSlug));
