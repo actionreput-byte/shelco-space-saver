@@ -43,6 +43,17 @@ export function FloatingChat() {
     setVisitorId(getVisitorId());
   }, []);
 
+  // Auto-greet: open the assistant 5s after arrival (once per browser session).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.sessionStorage.getItem("shelco.chatGreeted")) return;
+    const id = window.setTimeout(() => {
+      window.sessionStorage.setItem("shelco.chatGreeted", "1");
+      setOpen(true);
+    }, 5000);
+    return () => window.clearTimeout(id);
+  }, []);
+
   const transport = useMemo(() => new DefaultChatTransport({ api: "/api/chat" }), []);
   const { messages, sendMessage, status, error } = useChat({ transport });
 
@@ -51,6 +62,7 @@ export function FloatingChat() {
   useEffect(() => {
     if (open && !busy) textareaRef.current?.focus();
   }, [open, busy]);
+
 
   const handleSubmit = useCallback(
     (message: { text?: string }, event: React.FormEvent) => {
