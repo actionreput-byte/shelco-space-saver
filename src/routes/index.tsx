@@ -9,6 +9,7 @@ import { Portfolio } from "@/components/shelco/portfolio";
 import { Testimonials } from "@/components/shelco/testimonials";
 import { Blog } from "@/components/shelco/blog";
 import { ShopSection } from "@/components/shelco/shop";
+import { Tombola } from "@/components/shelco/tombola";
 
 import { Contact } from "@/components/shelco/contact";
 import {
@@ -68,6 +69,7 @@ function Index() {
         </div>
 
         <Services />
+        <Tombola />
         <ShopSection />
         <SectorMarquee />
 
