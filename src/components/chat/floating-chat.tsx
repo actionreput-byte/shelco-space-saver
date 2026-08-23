@@ -131,10 +131,15 @@ export function FloatingChat() {
             <Conversation className="flex-1">
               <ConversationContent className="gap-4">
                 {messages.length === 0 ? (
-                  <p className="rounded-xl bg-muted/60 p-3 text-sm text-muted-foreground">
-                    {t("chat.empty")}
-                  </p>
+                  <Message from="assistant">
+                    <MessageContent>
+                      <MessageResponse>
+                        {`Karibu Shelco! 👋 I'm your storage advisor. Tell me your space size or what you store, and I'll suggest the right racking or shelving and arrange a free site survey.\n\n${t("chat.empty")}`}
+                      </MessageResponse>
+                    </MessageContent>
+                  </Message>
                 ) : null}
+
                 {messages.map((message) => {
                   const text = message.parts
                     .map((part) => (part.type === "text" ? part.text : ""))
