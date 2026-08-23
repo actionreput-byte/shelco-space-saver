@@ -69,6 +69,7 @@ function Index() {
         </div>
 
         <Services />
+        <Tombola />
         <ShopSection />
         <SectorMarquee />
 
