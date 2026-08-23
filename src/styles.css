@@ -236,3 +236,24 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+@utility tombola-stage {
+  background-image:
+    radial-gradient(120% 80% at 15% 0%, oklch(0.45 0.058 262 / 0.9), transparent 60%),
+    var(--gradient-steel);
+}
+
+@utility tombola-glow {
+  background-image: radial-gradient(
+    45% 45% at 78% 45%,
+    oklch(0.645 0.183 38.5 / 0.28),
+    transparent 70%
+  );
+}
+
+@utility wheel-ring {
+  background-image: var(--gradient-brand);
+  box-shadow:
+    var(--shadow-glow),
+    inset 0 0 0 2px oklch(0.99 0.005 60 / 0.35);
+}
