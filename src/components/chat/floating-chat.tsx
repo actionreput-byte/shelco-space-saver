@@ -43,6 +43,17 @@ export function FloatingChat() {
     setVisitorId(getVisitorId());
   }, []);
 
+  // Auto-greet: open the assistant 5s after arrival (once per browser session).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.sessionStorage.getItem("shelco.chatGreeted")) return;
+    const id = window.setTimeout(() => {
+      window.sessionStorage.setItem("shelco.chatGreeted", "1");
+      setOpen(true);
+    }, 5000);
+    return () => window.clearTimeout(id);
+  }, []);
+
   const transport = useMemo(() => new DefaultChatTransport({ api: "/api/chat" }), []);
   const { messages, sendMessage, status, error } = useChat({ transport });
 
@@ -51,6 +62,7 @@ export function FloatingChat() {
   useEffect(() => {
     if (open && !busy) textareaRef.current?.focus();
   }, [open, busy]);
+
 
   const handleSubmit = useCallback(
     (message: { text?: string }, event: React.FormEvent) => {
@@ -119,10 +131,15 @@ export function FloatingChat() {
             <Conversation className="flex-1">
               <ConversationContent className="gap-4">
                 {messages.length === 0 ? (
-                  <p className="rounded-xl bg-muted/60 p-3 text-sm text-muted-foreground">
-                    {t("chat.empty")}
-                  </p>
+                  <Message from="assistant">
+                    <MessageContent>
+                      <MessageResponse>
+                        {`Karibu Shelco! 👋 I'm your storage advisor. Tell me your space size or what you store, and I'll suggest the right racking or shelving and arrange a free site survey.\n\n${t("chat.empty")}`}
+                      </MessageResponse>
+                    </MessageContent>
+                  </Message>
                 ) : null}
+
                 {messages.map((message) => {
                   const text = message.parts
                     .map((part) => (part.type === "text" ? part.text : ""))
