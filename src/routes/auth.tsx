@@ -141,7 +141,7 @@ function AuthPage() {
           </p>
         </div>
         <p className="text-xs text-steel-foreground/60">
-          Changombe, Mwakalinga Road · Dar es Salaam
+          Plot 2386, 12 Nnamdi Azikiwe Ave · Dar es Salaam
         </p>
       </div>
 

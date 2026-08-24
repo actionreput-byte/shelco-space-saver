@@ -14,7 +14,7 @@ export function About() {
   const { t } = useI18n();
 
   return (
-    <section id="about" className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+    <section id="about" className="mx-auto max-w-6xl px-4 py-10 sm:py-20">
       <SectionHeading
         eyebrow={t("about.eyebrow")}
         title={t("about.title")}

@@ -16,7 +16,7 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-muted/60 py-14 sm:py-20">
+    <section id="contact" className="bg-muted/60 py-10 sm:py-20">
       <div className="mx-auto max-w-6xl px-4">
         <SectionHeading
           eyebrow={t("contact.eyebrow")}

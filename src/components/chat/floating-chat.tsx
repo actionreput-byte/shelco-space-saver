@@ -131,13 +131,7 @@ export function FloatingChat() {
             <Conversation className="flex-1">
               <ConversationContent className="gap-4">
                 {messages.length === 0 ? (
-                  <Message from="assistant">
-                    <MessageContent>
-                      <MessageResponse>
-                        {`Karibu Shelco! 👋 I'm your storage advisor. Tell me your space size or what you store, and I'll suggest the right racking or shelving and arrange a free site survey.\n\n${t("chat.empty")}`}
-                      </MessageResponse>
-                    </MessageContent>
-                  </Message>
+                  <p className="px-1 text-sm text-muted-foreground">{t("chat.empty")}</p>
                 ) : null}
 
                 {messages.map((message) => {
@@ -156,7 +150,7 @@ export function FloatingChat() {
                 {status === "submitted" ? <Shimmer>Thinking…</Shimmer> : null}
                 {error ? (
                   <p className="text-sm text-destructive">
-                    Sorry, the assistant is unavailable right now. Please call +255 767 224 466.
+                    Sorry, the assistant is unavailable right now. Please call +255 652 808 809.
                   </p>
                 ) : null}
               </ConversationContent>

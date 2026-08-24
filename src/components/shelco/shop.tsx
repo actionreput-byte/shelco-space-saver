@@ -116,7 +116,7 @@ export function ProductGrid({ limit }: { limit?: number }) {
 export function ShopSection() {
   const { t } = useI18n();
   return (
-    <section id="shop" className="bg-muted/40 py-14">
+    <section id="shop" className="bg-muted/40 py-10">
       <div className="mx-auto max-w-6xl px-4">
         <SectionHeading
           eyebrow={t("shop.eyebrow")}

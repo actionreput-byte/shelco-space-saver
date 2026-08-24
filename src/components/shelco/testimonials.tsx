@@ -10,7 +10,7 @@ import { SectionHeading } from "./motion-primitives";
 const TESTIMONIALS = [
   { photo: person1, name: "Joseph M.", key: "testi.t1", location: "Kurasini" },
   { photo: person2, name: "Neema K.", key: "testi.t2", location: "Kariakoo" },
-  { photo: person3, name: "Hamisi S.", key: "testi.t3", location: "Changombe" },
+  { photo: person3, name: "Hamisi S.", key: "testi.t3", location: "Upanga" },
 ] as const;
 
 export function Testimonials() {
@@ -35,7 +35,7 @@ export function Testimonials() {
   const role = t(`${item.key}.role` as "testi.t1.role");
 
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+    <section className="mx-auto max-w-6xl px-4 py-10 sm:py-20">
       <SectionHeading eyebrow={t("testi.eyebrow")} title={t("testi.title")} align="center" />
 
       <div className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-lift">

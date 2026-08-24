@@ -29,7 +29,7 @@ export function RoiCalculator({ suggestedGain }: { suggestedGain?: number }) {
   const barWidth = Math.max(4, Math.min(100, result.roiPercent / 5));
 
   return (
-    <section id="roi" className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+    <section id="roi" className="mx-auto max-w-6xl px-4 py-10 sm:py-20">
       <SectionHeading
         eyebrow={t("roi.eyebrow")}
         title={t("roi.title")}

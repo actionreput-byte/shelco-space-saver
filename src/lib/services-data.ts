@@ -258,7 +258,7 @@ export const SERVICES: ServiceData[] = [
       },
       {
         q: "Do you deliver small orders?",
-        a: "Yes, accessories can be collected at Changombe or delivered anywhere in Tanzania.",
+        a: "Yes, accessories can be collected at our Nnamdi Azikiwe Ave premises or delivered anywhere in Tanzania.",
       },
     ],
   },

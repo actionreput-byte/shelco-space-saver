@@ -15,20 +15,20 @@ export const PRIMARY_EMAIL = EMAILS[0];
 
 export const COMPANY_NAME = "Shelco Storage Systems Ltd";
 
-/** Street address — update here when the new location is confirmed. */
+/** Street address. */
 export const ADDRESS = {
-  street: "Changombe, Mwakalinga Road",
+  street: "Plot 2386, 12 Nnamdi Azikiwe Ave",
   poBox: "P.O. Box 100053",
-  city: "Dar es Salaam",
+  city: "Dar es Salaam 11101",
   country: "Tanzania",
   countryCode: "TZ",
+  lat: -6.8157868,
+  lng: 39.2887259,
 };
 
 export const ADDRESS_LINE = `${ADDRESS.street}, ${ADDRESS.city}, ${ADDRESS.country}`;
 
-export const MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-  `${ADDRESS.street} ${ADDRESS.city} ${ADDRESS.country}`,
-)}`;
+export const MAPS_URL = "https://maps.app.goo.gl/2NY7xyPYGJxKTGoU8";
 
 /** Official Shelco WhatsApp short link — all WhatsApp buttons use this. */
 export const WHATSAPP_LINK = "https://wa.me/message/BS26NQP3L5SHI1";
