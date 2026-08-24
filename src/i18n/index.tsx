@@ -400,7 +400,7 @@ const SW: Record<keyof typeof EN, string> = {
   "contact.send": "Tuma ombi",
   "contact.sentBtn": "Ombi limetumwa",
   "contact.note":
-    "Unapendelea kuongea? Piga +255-767-224466 — tunapokea simu wakati wa kazi.",
+    "Unapendelea kuongea? Piga +255 652 808 809 — tunapokea simu wakati wa kazi.",
   "contact.toast": "Ombi limepokelewa",
   "contact.toastDesc": "Timu yetu itakupigia simu hivi karibuni.",
 
