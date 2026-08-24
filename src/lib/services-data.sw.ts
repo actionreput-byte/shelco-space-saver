@@ -191,7 +191,7 @@ export const SERVICES_SW: Record<ServiceSlug, ServiceSw> = {
       },
       {
         q: "Mnasafirisha oda ndogo?",
-        a: "Ndiyo, vifaa vinaweza kuchukuliwa Changombe au kuletwa popote Tanzania.",
+        a: "Ndiyo, vifaa vinaweza kuchukuliwa Nnamdi Azikiwe Ave au kuletwa popote Tanzania.",
       },
     ],
   },

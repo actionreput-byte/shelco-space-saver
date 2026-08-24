@@ -29,7 +29,7 @@ export const TRAINING_QA: TrainingPair[] = [
 export const SHELCO_FACTS = `
 COMPANY
 - Shelco Storage Systems Ltd, Dar es Salaam, Tanzania.
-- Address: Changombe, Mwakalinga Road, P.O. Box 100053, Dar es Salaam.
+- Address: Plot 2386, 12 Nnamdi Azikiwe Ave, Dar es Salaam 11101, Tanzania (P.O. Box 100053).
 - Phone / WhatsApp: +255 652 808 809 and +255 749 809 809.
 - Email: sales1.shelcosystems@gmail.com, sales2.shelcosystems@gmail.com.
 - Service area: Dar es Salaam and all regions of Tanzania.

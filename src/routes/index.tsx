@@ -50,7 +50,7 @@ function Index() {
         <Hero onCapacityChange={handleCapacity} />
         <StatsStrip />
 
-        <div className="py-8">
+        <div className="py-4 sm:py-8">
           <SocialProofStrip
             quote={t("sp1.quote")}
             metric="420+"
@@ -60,7 +60,7 @@ function Index() {
 
         <About />
 
-        <div className="pb-8">
+        <div className="pb-4 sm:pb-8">
           <SocialProofStrip
             quote={t("sp2.quote")}
             metric="4.9/5"
@@ -74,7 +74,7 @@ function Index() {
         <SectorMarquee />
 
 
-        <div className="py-8">
+        <div className="py-4 sm:py-8">
           <SocialProofStrip
             quote={t("sp3.quote")}
             metric="100%"
@@ -84,7 +84,7 @@ function Index() {
 
         <RoiCalculator suggestedGain={positions} />
 
-        <div className="pb-8">
+        <div className="pb-4 sm:pb-8">
           <SocialProofStrip
             quote={t("sp4.quote")}
             metric="< 12 mo"
@@ -95,7 +95,7 @@ function Index() {
         <Portfolio />
         <Testimonials />
 
-        <div className="pb-8">
+        <div className="pb-4 sm:pb-8">
           <SocialProofStrip
             quote={t("sp5.quote")}
             metric="38,000+"

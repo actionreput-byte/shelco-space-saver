@@ -93,7 +93,7 @@ const EN = {
   "about.p3.body":
     "Organised systems give easy access to materials, streamlining operations and saving valuable time.",
   "about.note":
-    "From a single shelf in your home to a complex pallet racking system in a large warehouse, we provide the perfect solution for any storage need — designed, delivered and installed from Changombe, Dar es Salaam.",
+    "From a single shelf in your home to a complex pallet racking system in a large warehouse, we provide the perfect solution for any storage need — designed, delivered and installed from our Nnamdi Azikiwe Avenue works in Dar es Salaam.",
 
   // Services
   "services.eyebrow": "Services",
@@ -165,9 +165,9 @@ const EN = {
   "contact.need": "What do you need to store?",
   "contact.send": "Send request",
   "contact.sentBtn": "Request sent",
-  "contact.note": "Prefer to talk? Call +255-767-224466 — we answer during working hours.",
+  "contact.note": "Prefer to talk? Call +255 652 808 809 — we answer during working hours.",
   "contact.toast": "Request received",
-  "contact.toastDesc": "Our team will call you back from Changombe shortly.",
+  "contact.toastDesc": "Our team will call you back shortly.",
 
   // ROI
   "roi.eyebrow": "ROI calculator",
@@ -249,7 +249,7 @@ const EN = {
   "svc.included": "What is included",
   "svc.projects": "Recent installations",
   "svc.book": "Book your free site visit",
-  "svc.bookDesc": "Send your details and our team will call you back from Changombe.",
+  "svc.bookDesc": "Send your details and our team will call you back.",
 } as const;
 
 const SW: Record<keyof typeof EN, string> = {
@@ -333,7 +333,7 @@ const SW: Record<keyof typeof EN, string> = {
   "about.p3.body":
     "Mifumo iliyopangwa hurahisisha kufikia bidhaa, kuharakisha kazi na kuokoa muda muhimu.",
   "about.note":
-    "Kuanzia shelf moja nyumbani hadi mfumo mkubwa wa rack za paleti kwenye ghala kubwa, tunatoa suluhisho sahihi kwa hitaji lolote la hifadhi — tunabuni, tunaleta na kufunga kutoka Changombe, Dar es Salaam.",
+    "Kuanzia shelf moja nyumbani hadi mfumo mkubwa wa rack za paleti kwenye ghala kubwa, tunatoa suluhisho sahihi kwa hitaji lolote la hifadhi — tunabuni, tunaleta na kufunga kutoka Nnamdi Azikiwe Ave, Dar es Salaam.",
 
   "services.eyebrow": "Huduma",
   "services.title": "Mifumo ya hifadhi iliyotengenezwa kwa chuma cha Q235",
@@ -402,7 +402,7 @@ const SW: Record<keyof typeof EN, string> = {
   "contact.note":
     "Unapendelea kuongea? Piga +255-767-224466 — tunapokea simu wakati wa kazi.",
   "contact.toast": "Ombi limepokelewa",
-  "contact.toastDesc": "Timu yetu itakupigia simu kutoka Changombe hivi karibuni.",
+  "contact.toastDesc": "Timu yetu itakupigia simu hivi karibuni.",
 
   "roi.eyebrow": "Kikokotoo cha faida",
   "roi.title": "Ona matumizi bora ya nafasi yanavyolipa",
@@ -478,7 +478,7 @@ const SW: Record<keyof typeof EN, string> = {
   "svc.included": "Kinachojumuishwa",
   "svc.projects": "Ufungaji wa hivi karibuni",
   "svc.book": "Panga ukaguzi wako bure",
-  "svc.bookDesc": "Tuma taarifa zako na timu yetu itakupigia kutoka Changombe.",
+  "svc.bookDesc": "Tuma taarifa zako na timu yetu itakupigia.",
 };
 
 const DICT = { en: EN, sw: SW } as const;

@@ -8,7 +8,7 @@ export function Blog() {
   const { t } = useI18n();
 
   return (
-    <section id="blog" className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+    <section id="blog" className="mx-auto max-w-6xl px-4 py-10 sm:py-20">
       <SectionHeading
         eyebrow={t("blog.eyebrow")}
         title={t("blog.title")}
