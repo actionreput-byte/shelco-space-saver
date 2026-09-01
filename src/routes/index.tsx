@@ -40,8 +40,6 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { t } = useI18n();
-  const [positions, setPositions] = useState(0);
-  const handleCapacity = useCallback((p: number) => setPositions(p), []);
 
   return (
     <div className="min-h-screen bg-background">
