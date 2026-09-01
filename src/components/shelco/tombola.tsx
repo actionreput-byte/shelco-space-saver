@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Gift, Sparkles, Ticket } from "lucide-react";
-import { waLink } from "@/lib/contact-info";
+import { openWhatsApp, waLink } from "@/lib/contact-info";
 import { Reveal } from "@/components/shelco/motion-primitives";
 
 type Prize = {
