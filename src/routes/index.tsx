@@ -47,7 +47,7 @@ function Index() {
     <div className="min-h-screen bg-background">
       <SiteHeader />
       <main>
-        <Hero onCapacityChange={handleCapacity} />
+        <Hero />
         <StatsStrip />
 
         <div className="py-4 sm:py-8">
