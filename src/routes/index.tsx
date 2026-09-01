@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useCallback, useState } from "react";
+
 import { SiteHeader } from "@/components/shelco/site-header";
 import { Hero } from "@/components/shelco/hero";
 import { About } from "@/components/shelco/about";
@@ -40,14 +40,12 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { t } = useI18n();
-  const [positions, setPositions] = useState(0);
-  const handleCapacity = useCallback((p: number) => setPositions(p), []);
 
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader />
       <main>
-        <Hero onCapacityChange={handleCapacity} />
+        <Hero />
         <StatsStrip />
 
         <div className="py-4 sm:py-8">
@@ -82,7 +80,7 @@ function Index() {
           />
         </div>
 
-        <RoiCalculator suggestedGain={positions} />
+        <RoiCalculator />
 
         <div className="pb-4 sm:pb-8">
           <SocialProofStrip

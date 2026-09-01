@@ -1,11 +1,12 @@
 import { motion } from "motion/react";
-import { WHATSAPP_LINK } from "@/lib/contact-info";
+import { WHATSAPP_LINK, openWhatsApp } from "@/lib/contact-info";
 
 /** Floating WhatsApp chat button, bottom-left of the screen. */
 export function WhatsAppFab() {
   return (
     <motion.a
       href={WHATSAPP_LINK}
+      onClick={(e) => openWhatsApp(e)}
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with Shelco on WhatsApp"

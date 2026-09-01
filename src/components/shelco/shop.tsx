@@ -9,7 +9,7 @@ import {
 } from "@/components/shelco/motion-primitives";
 import { CATEGORIES, FREE_SERVICES, PRODUCTS, type ProductCategory } from "@/lib/products-data";
 import { useI18n } from "@/i18n";
-import { PRIMARY_PHONE, waLink } from "@/lib/contact-info";
+import { PRIMARY_PHONE, openWhatsApp, waLink } from "@/lib/contact-info";
 
 export function ProductGrid({ limit }: { limit?: number }) {
   const { lang, t } = useI18n();
@@ -84,6 +84,9 @@ export function ProductGrid({ limit }: { limit?: number }) {
                   href={waLink(
                     `Habari Shelco, I would like a quote for: ${p.name} (${p.dims})`,
                   )}
+                  onClick={(e) =>
+                    openWhatsApp(e, `Habari Shelco, I would like a quote for: ${p.name} (${p.dims})`)
+                  }
                   target="_blank"
                   rel="noreferrer"
                   className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-lg brand-gradient px-3 py-2 text-xs font-bold text-primary-foreground shadow-glow active:scale-95"
