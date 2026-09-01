@@ -9,7 +9,7 @@ import {
 } from "@/components/shelco/motion-primitives";
 import { CATEGORIES, FREE_SERVICES, PRODUCTS, type ProductCategory } from "@/lib/products-data";
 import { useI18n } from "@/i18n";
-import { PRIMARY_PHONE, waLink } from "@/lib/contact-info";
+import { PRIMARY_PHONE, openWhatsApp, waLink } from "@/lib/contact-info";
 
 export function ProductGrid({ limit }: { limit?: number }) {
   const { lang, t } = useI18n();
