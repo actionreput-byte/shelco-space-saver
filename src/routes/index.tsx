@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useCallback, useState } from "react";
+
 import { SiteHeader } from "@/components/shelco/site-header";
 import { Hero } from "@/components/shelco/hero";
 import { About } from "@/components/shelco/about";
