@@ -110,7 +110,7 @@ export function FloatingChat() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[60] flex flex-col bg-card sm:inset-auto sm:bottom-4 sm:right-4 sm:h-[min(620px,80vh)] sm:w-[400px] sm:rounded-2xl sm:border sm:border-border sm:shadow-2xl"
+            className="fixed bottom-3 right-3 z-[60] flex h-[min(420px,60vh)] w-[min(340px,calc(100vw-1.5rem))] flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-2xl sm:bottom-4 sm:right-4 sm:h-[min(620px,80vh)] sm:w-[400px]"
           >
             <header className="flex items-center gap-3 border-b border-border px-4 py-3">
               <img src={agentIcon} alt="" className="h-9 w-9 rounded-lg object-contain" />
