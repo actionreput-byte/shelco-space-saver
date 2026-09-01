@@ -80,7 +80,7 @@ function Index() {
           />
         </div>
 
-        <RoiCalculator suggestedGain={positions} />
+        <RoiCalculator />
 
         <div className="pb-4 sm:pb-8">
           <SocialProofStrip
