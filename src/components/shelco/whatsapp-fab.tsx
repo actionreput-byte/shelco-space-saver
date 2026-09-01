@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { WHATSAPP_LINK } from "@/lib/contact-info";
+import { WHATSAPP_LINK, openWhatsApp } from "@/lib/contact-info";
 
 /** Floating WhatsApp chat button, bottom-left of the screen. */
 export function WhatsAppFab() {
