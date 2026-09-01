@@ -45,8 +45,8 @@ export function Hero() {
       <div className="absolute inset-0 steel-gradient opacity-90" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,transparent,oklch(0.2_0.03_263/0.85))]" />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-12 pt-12 sm:pb-20 sm:pt-16 lg:grid lg:grid-cols-2 lg:items-center lg:gap-12">
-        <div className="text-steel-foreground">
+      <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-12 pt-12 sm:pb-16 sm:pt-16">
+        <div className="mx-auto max-w-3xl text-center text-steel-foreground">
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28 }}
-            className="mt-4 max-w-xl text-base leading-relaxed text-steel-foreground/80 sm:text-lg"
+            className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-steel-foreground/80 sm:text-lg"
           >
             {t("hero.sub")}
           </motion.p>
@@ -81,7 +81,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.36 }}
-            className="mt-6 flex flex-wrap gap-3"
+            className="mt-6 flex flex-wrap justify-center gap-3"
           >
             <a
               href="#contact"
@@ -102,7 +102,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-8 rounded-2xl border border-border/40 bg-card/95 p-3 shadow-lift backdrop-blur sm:p-5 lg:mt-0"
+          className="mx-auto w-full max-w-2xl rounded-2xl border border-border/40 bg-card/95 p-3 shadow-lift backdrop-blur sm:p-5"
         >
           <div className="relative overflow-hidden rounded-xl bg-white">
             <AnimatePresence mode="wait" custom={dir}>

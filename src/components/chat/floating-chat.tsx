@@ -43,14 +43,14 @@ export function FloatingChat() {
     setVisitorId(getVisitorId());
   }, []);
 
-  // Auto-open the assistant 55s after arrival (once per browser session).
+  // Auto-open the assistant 60s after arrival (once per browser session).
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.sessionStorage.getItem("shelco.chatGreeted")) return;
     const id = window.setTimeout(() => {
       window.sessionStorage.setItem("shelco.chatGreeted", "1");
       setOpen(true);
-    }, 55000);
+    }, 60000);
     return () => window.clearTimeout(id);
   }, []);
 
