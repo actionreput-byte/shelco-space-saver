@@ -6,6 +6,7 @@ export function WhatsAppFab() {
   return (
     <motion.a
       href={WHATSAPP_LINK}
+      onClick={(e) => openWhatsApp(e)}
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with Shelco on WhatsApp"
