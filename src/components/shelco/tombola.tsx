@@ -118,6 +118,12 @@ export function Tombola() {
                   href={waLink(
                     `Habari Shelco! I won "${prize.label}" on the tombola (code ${prize.code}). I would like a quotation.`,
                   )}
+                  onClick={(e) =>
+                    openWhatsApp(
+                      e,
+                      `Habari Shelco! I won "${prize.label}" on the tombola (code ${prize.code}). I would like a quotation.`,
+                    )
+                  }
                   target="_blank"
                   rel="noreferrer"
                   className="mt-5 inline-flex items-center gap-2 rounded-xl brand-gradient px-5 py-3 text-sm font-bold text-primary-foreground shadow-glow active:scale-95"
