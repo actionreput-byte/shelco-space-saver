@@ -114,15 +114,16 @@
   --shadow-lift: 0 18px 40px -22px oklch(0.33 0.05 263 / 0.45);
   --shadow-glow: 0 20px 60px -25px oklch(0.645 0.183 38.5 / 0.65);
 
-  /* Tombola wheel */
-  --wheel-a: oklch(0.645 0.183 38.5);
-  --wheel-b: oklch(0.97 0.01 60);
-  --wheel-c: oklch(0.38 0.055 263);
-  --wheel-d: oklch(0.82 0.09 60);
-  --wheel-edge: oklch(0.99 0.005 60 / 0.6);
-  --wheel-hub: oklch(0.24 0.03 262);
-  --wheel-on-dark: oklch(0.99 0.005 60);
-  --wheel-on-light: oklch(0.27 0.03 262);
+  /* Tombola wheel — classic red / cream with gold rim */
+  --wheel-a: oklch(0.55 0.2 27);
+  --wheel-b: oklch(0.95 0.03 85);
+  --wheel-c: oklch(0.55 0.2 27);
+  --wheel-d: oklch(0.95 0.03 85);
+  --wheel-edge: oklch(0.86 0.13 88);
+  --wheel-hub: oklch(0.86 0.13 88);
+  --wheel-on-dark: oklch(0.98 0.02 85);
+  --wheel-on-light: oklch(0.5 0.19 27);
+
 }
 
 
@@ -252,8 +253,15 @@
 }
 
 @utility wheel-ring {
-  background-image: var(--gradient-brand);
+  background: linear-gradient(
+    150deg,
+    oklch(0.93 0.11 92),
+    oklch(0.78 0.14 78) 45%,
+    oklch(0.96 0.08 95) 70%,
+    oklch(0.72 0.13 72)
+  );
   box-shadow:
-    var(--shadow-glow),
-    inset 0 0 0 2px oklch(0.99 0.005 60 / 0.35);
+    0 24px 60px -25px oklch(0.5 0.12 60 / 0.7),
+    inset 0 0 0 2px oklch(0.99 0.03 90 / 0.6);
 }
+
