@@ -15,14 +15,15 @@ type Prize = {
 
 const PRIZES: Prize[] = [
   { label: "FREE DELIVERY", code: "SHELCOFD", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: true },
-  { label: "5% OFF", code: "SHELCO5", fill: "var(--wheel-c)", text: "var(--wheel-on-dark)", winnable: false },
-  { label: "FREE SURVEY", code: "SHELCOFS", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
-  { label: "FREE FITTING", code: "SHELCOFI", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: true },
-  { label: "5% OFF", code: "SHELCO5B", fill: "var(--wheel-c)", text: "var(--wheel-on-dark)", winnable: false },
-  { label: "FREE SHIPPING", code: "SHELCOSH", fill: "var(--wheel-d)", text: "var(--wheel-on-light)", winnable: true },
-  { label: "FREE LAYOUT PLAN", code: "SHELCOLP", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
-  { label: "FREE ASSEMBLY", code: "SHELCOFA", fill: "var(--wheel-d)", text: "var(--wheel-on-light)", winnable: true },
+  { label: "5% OFF", code: "SHELCO5", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: false },
+  { label: "FREE SURVEY", code: "SHELCOFS", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: true },
+  { label: "FREE FITTING", code: "SHELCOFI", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
+  { label: "5% OFF", code: "SHELCO5B", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: false },
+  { label: "FREE SHIPPING", code: "SHELCOSH", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
+  { label: "FREE LAYOUT", code: "SHELCOLP", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: true },
+  { label: "FREE ASSEMBLY", code: "SHELCOFA", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
 ];
+
 
 const WINNABLE = PRIZES.map((p, i) => ({ p, i })).filter(({ p }) => p.winnable);
 
