@@ -73,17 +73,19 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28 }}
-            className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-steel-foreground/80 sm:text-lg"
+            className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-steel-foreground/80 sm:text-lg lg:mx-0"
           >
             {t("hero.sub")}
           </motion.p>
+
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.36 }}
-            className="mt-6 flex flex-wrap justify-center gap-3"
+            className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start"
           >
+
             <a
               href="#contact"
               className="inline-flex items-center gap-2 rounded-lg brand-gradient px-5 py-3 font-bold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5 active:scale-95"
@@ -103,8 +105,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto w-full max-w-2xl rounded-2xl border border-border/40 bg-card/95 p-3 shadow-lift backdrop-blur sm:p-5"
+          className="mx-auto w-full max-w-xl rounded-2xl border border-border/40 bg-card/95 p-3 shadow-lift backdrop-blur sm:p-5"
         >
+
           <div className="relative overflow-hidden rounded-xl bg-white">
             <AnimatePresence mode="wait" custom={dir}>
               <motion.img
