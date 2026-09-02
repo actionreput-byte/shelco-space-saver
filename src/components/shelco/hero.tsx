@@ -45,8 +45,9 @@ export function Hero() {
       <div className="absolute inset-0 steel-gradient opacity-90" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,transparent,oklch(0.2_0.03_263/0.85))]" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-12 pt-12 sm:pb-16 sm:pt-16">
-        <div className="mx-auto max-w-3xl text-center text-steel-foreground">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-10 sm:pb-16 sm:pt-16 lg:grid-cols-2 lg:gap-12">
+        <div className="max-w-xl text-center text-steel-foreground lg:text-left">
+
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
