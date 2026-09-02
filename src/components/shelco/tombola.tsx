@@ -171,8 +171,9 @@ export function Tombola() {
 
                 {PRIZES.map((p, i) => {
                   const a = i * SEG + SEG / 2;
-                  const [tx, ty] = polar(100, 100, 58, a);
-                  const rot = a > 90 && a < 270 ? a + 180 : a;
+                  const [tx, ty] = polar(100, 100, 84, a);
+                  const flip = a > 180;
+                  const rot = flip ? a + 90 : a - 90;
                   return (
                     <g key={p.code}>
                       <path
@@ -185,10 +186,10 @@ export function Tombola() {
                         x={tx}
                         y={ty}
                         fill={p.text}
-                        fontSize="7.4"
+                        fontSize="7"
                         fontWeight="800"
-                        letterSpacing="0.4"
-                        textAnchor="middle"
+                        letterSpacing="0.2"
+                        textAnchor={flip ? "start" : "end"}
                         dominantBaseline="middle"
                         transform={`rotate(${rot} ${tx} ${ty})`}
                       >
@@ -197,6 +198,7 @@ export function Tombola() {
                     </g>
                   );
                 })}
+
 
                 <circle cx="100" cy="100" r="92" fill="url(#wheelSheen)" pointerEvents="none" />
                 <circle

@@ -83,18 +83,19 @@ export function SiteFooter() {
 
   return (
     <footer className="steel-gradient text-steel-foreground">
-      <div className="mx-auto grid max-w-6xl grid-cols-3 gap-4 px-4 py-8 text-[13px] sm:grid-cols-2 sm:gap-6 sm:py-10 sm:text-sm lg:grid-cols-5">
-        <div>
+      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-5 px-4 py-8 text-[13px] sm:gap-6 sm:py-10 sm:text-sm lg:grid-cols-5">
+        <div className="col-span-2 lg:col-span-1">
           <img
             src={logoAsset.url}
             alt="Shelco Storage Systems"
             loading="lazy"
             width={220}
             height={64}
-            className="h-10 w-auto rounded bg-background p-1"
+            className="h-10 w-auto"
           />
           <p className="mt-3 text-sm text-steel-foreground/75">{t("footer.tagline")}</p>
         </div>
+
         <div>
           <h3 className="text-sm font-extrabold uppercase tracking-wider">
             {t("footer.explore")}
