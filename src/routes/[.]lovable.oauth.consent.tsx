@@ -2,7 +2,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import { Loader2, ShieldCheck } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import logoAsset from "@/assets/shelco-logo.asset.json";
+import logoAsset from "@/assets/shelco-logo.png.asset.json";
 
 type OAuthDetails = {
   client?: { name?: string | null } | null;

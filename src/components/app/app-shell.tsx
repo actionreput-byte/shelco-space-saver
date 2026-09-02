@@ -2,7 +2,7 @@ import { useState, type ReactNode } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { LogOut, Menu, X } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import logoAsset from "@/assets/shelco-logo.asset.json";
+import logoAsset from "@/assets/shelco-logo.png.asset.json";
 
 export type NavItem = { to: string; label: string; icon: ReactNode };
 

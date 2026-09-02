@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import QRCode from "qrcode";
-import logoAsset from "@/assets/shelco-logo.asset.json";
+import logoAsset from "@/assets/shelco-logo.png.asset.json";
 import { useI18n } from "@/i18n";
 import { SERVICES } from "@/lib/services-data";
 import { BLOG_POSTS } from "@/lib/blog-data";
