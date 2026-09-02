@@ -15,14 +15,15 @@ type Prize = {
 
 const PRIZES: Prize[] = [
   { label: "FREE DELIVERY", code: "SHELCOFD", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: true },
-  { label: "5% OFF", code: "SHELCO5", fill: "var(--wheel-c)", text: "var(--wheel-on-dark)", winnable: false },
-  { label: "FREE SURVEY", code: "SHELCOFS", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
-  { label: "FREE FITTING", code: "SHELCOFI", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: true },
-  { label: "5% OFF", code: "SHELCO5B", fill: "var(--wheel-c)", text: "var(--wheel-on-dark)", winnable: false },
-  { label: "FREE SHIPPING", code: "SHELCOSH", fill: "var(--wheel-d)", text: "var(--wheel-on-light)", winnable: true },
-  { label: "FREE LAYOUT PLAN", code: "SHELCOLP", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
-  { label: "FREE ASSEMBLY", code: "SHELCOFA", fill: "var(--wheel-d)", text: "var(--wheel-on-light)", winnable: true },
+  { label: "5% OFF", code: "SHELCO5", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: false },
+  { label: "FREE SURVEY", code: "SHELCOFS", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: true },
+  { label: "FREE FITTING", code: "SHELCOFI", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
+  { label: "5% OFF", code: "SHELCO5B", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: false },
+  { label: "FREE SHIPPING", code: "SHELCOSH", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
+  { label: "FREE LAYOUT", code: "SHELCOLP", fill: "var(--wheel-a)", text: "var(--wheel-on-dark)", winnable: true },
+  { label: "FREE ASSEMBLY", code: "SHELCOFA", fill: "var(--wheel-b)", text: "var(--wheel-on-light)", winnable: true },
 ];
+
 
 const WINNABLE = PRIZES.map((p, i) => ({ p, i })).filter(({ p }) => p.winnable);
 
@@ -170,8 +171,9 @@ export function Tombola() {
 
                 {PRIZES.map((p, i) => {
                   const a = i * SEG + SEG / 2;
-                  const [tx, ty] = polar(100, 100, 58, a);
-                  const rot = a > 90 && a < 270 ? a + 180 : a;
+                  const [tx, ty] = polar(100, 100, 84, a);
+                  const flip = a > 180;
+                  const rot = flip ? a + 90 : a - 90;
                   return (
                     <g key={p.code}>
                       <path
@@ -184,10 +186,10 @@ export function Tombola() {
                         x={tx}
                         y={ty}
                         fill={p.text}
-                        fontSize="7.4"
+                        fontSize="7"
                         fontWeight="800"
-                        letterSpacing="0.4"
-                        textAnchor="middle"
+                        letterSpacing="0.2"
+                        textAnchor={flip ? "start" : "end"}
                         dominantBaseline="middle"
                         transform={`rotate(${rot} ${tx} ${ty})`}
                       >
@@ -196,6 +198,7 @@ export function Tombola() {
                     </g>
                   );
                 })}
+
 
                 <circle cx="100" cy="100" r="92" fill="url(#wheelSheen)" pointerEvents="none" />
                 <circle

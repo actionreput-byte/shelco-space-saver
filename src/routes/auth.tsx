@@ -6,7 +6,7 @@ import { ArrowLeft, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/hooks/useAuth";
-import logoAsset from "@/assets/shelco-logo.asset.json";
+import logoAsset from "@/assets/shelco-logo.png.asset.json";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({

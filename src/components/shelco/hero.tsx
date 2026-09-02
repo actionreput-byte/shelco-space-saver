@@ -45,8 +45,9 @@ export function Hero() {
       <div className="absolute inset-0 steel-gradient opacity-90" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,transparent,oklch(0.2_0.03_263/0.85))]" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 pb-12 pt-12 sm:pb-16 sm:pt-16">
-        <div className="mx-auto max-w-3xl text-center text-steel-foreground">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 pb-10 pt-10 sm:pb-16 sm:pt-16 lg:grid-cols-2 lg:gap-12">
+        <div className="max-w-xl text-center text-steel-foreground lg:text-left">
+
           <motion.span
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -72,17 +73,19 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28 }}
-            className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-steel-foreground/80 sm:text-lg"
+            className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-steel-foreground/80 sm:text-lg lg:mx-0"
           >
             {t("hero.sub")}
           </motion.p>
+
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.36 }}
-            className="mt-6 flex flex-wrap justify-center gap-3"
+            className="mt-6 flex flex-wrap justify-center gap-3 lg:justify-start"
           >
+
             <a
               href="#contact"
               className="inline-flex items-center gap-2 rounded-lg brand-gradient px-5 py-3 font-bold text-primary-foreground shadow-glow transition-transform hover:-translate-y-0.5 active:scale-95"
@@ -102,8 +105,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto w-full max-w-2xl rounded-2xl border border-border/40 bg-card/95 p-3 shadow-lift backdrop-blur sm:p-5"
+          className="mx-auto w-full max-w-xl rounded-2xl border border-border/40 bg-card/95 p-3 shadow-lift backdrop-blur sm:p-5"
         >
+
           <div className="relative overflow-hidden rounded-xl bg-white">
             <AnimatePresence mode="wait" custom={dir}>
               <motion.img

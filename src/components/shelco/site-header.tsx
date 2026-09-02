@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useI18n } from "@/i18n";
 import { SERVICES } from "@/lib/services-data";
 import { PRIMARY_PHONE } from "@/lib/contact-info";
-import logoAsset from "@/assets/shelco-logo.asset.json";
+import logoAsset from "@/assets/shelco-logo.png.asset.json";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
