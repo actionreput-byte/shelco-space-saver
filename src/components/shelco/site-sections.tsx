@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import QRCode from "qrcode";
+import { ChevronDown } from "lucide-react";
 import logoAsset from "@/assets/shelco-logo.png.asset.json";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useI18n } from "@/i18n";
 import { SERVICES } from "@/lib/services-data";
 import { BLOG_POSTS } from "@/lib/blog-data";
