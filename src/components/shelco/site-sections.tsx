@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import QRCode from "qrcode";
+import { ChevronDown } from "lucide-react";
 import logoAsset from "@/assets/shelco-logo.png.asset.json";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useI18n } from "@/i18n";
 import { SERVICES } from "@/lib/services-data";
 import { BLOG_POSTS } from "@/lib/blog-data";
@@ -68,23 +69,53 @@ export function SectorMarquee() {
   );
 }
 
+/** Collapsible sub-menu on mobile, always expanded on desktop. */
+function FooterGroup({ title, children }: { title: string; children: ReactNode }) {
+  const isMobile = useIsMobile();
+  return (
+    <details
+      className="group border-b border-steel-foreground/15 py-2 lg:border-0 lg:py-0"
+      open={!isMobile}
+    >
+      <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-extrabold uppercase tracking-wider lg:pointer-events-none lg:cursor-default">
+        {title}
+        <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180 lg:hidden" />
+      </summary>
+      <div className="pb-2 lg:pb-0">{children}</div>
+    </details>
+  );
+}
+
 export function SiteFooter() {
   const { t } = useI18n();
   const [qr, setQr] = useState<string | null>(null);
 
   useEffect(() => {
     const target = window.location.origin || SITE;
-    void QRCode.toDataURL(target, {
-      width: 320,
-      margin: 1,
-      color: { dark: "#1f2a44", light: "#ffffff" },
-    }).then(setQr);
+    let cancelled = false;
+    const id = window.setTimeout(() => {
+      void import("qrcode").then((m) =>
+        m.default
+          .toDataURL(target, {
+            width: 320,
+            margin: 1,
+            color: { dark: "#1f2a44", light: "#ffffff" },
+          })
+          .then((d) => {
+            if (!cancelled) setQr(d);
+          }),
+      );
+    }, 1200);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(id);
+    };
   }, []);
 
   return (
     <footer className="steel-gradient text-steel-foreground">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-5 px-4 py-8 text-[13px] sm:gap-6 sm:py-10 sm:text-sm lg:grid-cols-5">
-        <div className="col-span-2 lg:col-span-1">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-2 px-4 py-8 text-[13px] sm:text-sm lg:grid-cols-5 lg:gap-6 lg:py-10">
+        <div className="lg:col-span-1">
           <img
             src={logoAsset.url}
             alt="Shelco Storage Systems"
@@ -96,10 +127,7 @@ export function SiteFooter() {
           <p className="mt-3 text-sm text-steel-foreground/75">{t("footer.tagline")}</p>
         </div>
 
-        <div>
-          <h3 className="text-sm font-extrabold uppercase tracking-wider">
-            {t("footer.explore")}
-          </h3>
+        <FooterGroup title={t("footer.explore")}>
           <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
             <li><a className="hover:text-primary" href="/#about">{t("nav.about")}</a></li>
             <li><Link className="hover:text-primary" to="/services">{t("nav.services")}</Link></li>
@@ -108,11 +136,9 @@ export function SiteFooter() {
             <li><Link className="hover:text-primary" to="/blog">{t("nav.insights")}</Link></li>
             <li><Link className="hover:text-primary" to="/get-app">{t("nav.getApp")}</Link></li>
           </ul>
-        </div>
-        <div>
-          <h3 className="text-sm font-extrabold uppercase tracking-wider">
-            {t("nav.services")}
-          </h3>
+        </FooterGroup>
+
+        <FooterGroup title={t("nav.services")}>
           <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
             {SERVICES.map((s) => (
               <li key={s.slug}>
@@ -122,9 +148,9 @@ export function SiteFooter() {
               </li>
             ))}
           </ul>
-          <h3 className="mt-5 text-sm font-extrabold uppercase tracking-wider">
-            {t("nav.insights")}
-          </h3>
+        </FooterGroup>
+
+        <FooterGroup title={t("nav.insights")}>
           <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
             {BLOG_POSTS.map((p) => (
               <li key={p.slug}>
@@ -134,11 +160,9 @@ export function SiteFooter() {
               </li>
             ))}
           </ul>
-        </div>
-        <div>
-          <h3 className="text-sm font-extrabold uppercase tracking-wider">
-            {t("footer.contact")}
-          </h3>
+        </FooterGroup>
+
+        <FooterGroup title={t("footer.contact")}>
           <ul className="mt-3 space-y-2 text-sm text-steel-foreground/80">
             <li>{ADDRESS_LINE}</li>
             {PHONES.map((p) => (
@@ -152,9 +176,9 @@ export function SiteFooter() {
               </li>
             ))}
           </ul>
-        </div>
-        <div>
-          <h3 className="text-sm font-extrabold uppercase tracking-wider">{t("footer.qr")}</h3>
+        </FooterGroup>
+
+        <FooterGroup title={t("footer.qr")}>
           <div className="mt-3 flex items-center gap-3">
             <div className="rounded-xl bg-background p-2">
               {qr ? (
@@ -176,7 +200,7 @@ export function SiteFooter() {
               </Link>
             </div>
           </div>
-        </div>
+        </FooterGroup>
       </div>
       <div className="border-t border-steel-foreground/15 px-4 py-4 text-center text-xs text-steel-foreground/60">
         © {new Date().getFullYear()} Shelco Storage Systems Ltd. {t("footer.rights")}

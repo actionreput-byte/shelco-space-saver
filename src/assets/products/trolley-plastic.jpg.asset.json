@@ -1,11 +1,11 @@
 {
-  "asset_id": "9f362575-ec70-4232-a75a-b94d279c02c2",
-  "content_type": "image/jpeg",
-  "created_at": "2026-08-14T20:15:00Z",
-  "original_filename": "trolley-plastic.jpg",
+  "version": 1,
+  "asset_id": "35230585-fdd9-4714-987e-a9961ddd030e",
   "project_id": "25c3ab67-b419-4f4e-9e6c-06964774ea0b",
-  "r2_key": "a/v1/25c3ab67-b419-4f4e-9e6c-06964774ea0b/9f362575-ec70-4232-a75a-b94d279c02c2/trolley-plastic.jpg",
-  "size": 312261,
-  "url": "/__l5e/assets-v1/9f362575-ec70-4232-a75a-b94d279c02c2/trolley-plastic.jpg",
-  "version": 1
+  "url": "/__l5e/assets-v1/35230585-fdd9-4714-987e-a9961ddd030e/trolley-plastic.webp",
+  "r2_key": "a/v1/25c3ab67-b419-4f4e-9e6c-06964774ea0b/35230585-fdd9-4714-987e-a9961ddd030e/trolley-plastic.webp",
+  "original_filename": "trolley-plastic.webp",
+  "size": 28284,
+  "content_type": "image/webp",
+  "created_at": "2026-09-03T06:38:16Z"
 }

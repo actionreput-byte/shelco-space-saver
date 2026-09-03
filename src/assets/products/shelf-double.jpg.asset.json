@@ -1,11 +1,11 @@
 {
-  "asset_id": "e69db19f-131e-4059-bfc0-262b74a8cdd4",
-  "content_type": "image/jpeg",
-  "created_at": "2026-08-14T20:14:54Z",
-  "original_filename": "shelf-double.jpg",
+  "version": 1,
+  "asset_id": "66b2a6a4-05a9-473c-9e35-fbdbda47a7e4",
   "project_id": "25c3ab67-b419-4f4e-9e6c-06964774ea0b",
-  "r2_key": "a/v1/25c3ab67-b419-4f4e-9e6c-06964774ea0b/e69db19f-131e-4059-bfc0-262b74a8cdd4/shelf-double.jpg",
-  "size": 255426,
-  "url": "/__l5e/assets-v1/e69db19f-131e-4059-bfc0-262b74a8cdd4/shelf-double.jpg",
-  "version": 1
+  "url": "/__l5e/assets-v1/66b2a6a4-05a9-473c-9e35-fbdbda47a7e4/shelf-double.webp",
+  "r2_key": "a/v1/25c3ab67-b419-4f4e-9e6c-06964774ea0b/66b2a6a4-05a9-473c-9e35-fbdbda47a7e4/shelf-double.webp",
+  "original_filename": "shelf-double.webp",
+  "size": 16336,
+  "content_type": "image/webp",
+  "created_at": "2026-09-03T06:38:07Z"
 }

@@ -35,6 +35,8 @@ export function Hero() {
       <motion.img
         src={heroImg}
         alt={t("hero.imgAlt")}
+        fetchPriority="high"
+        decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
         width={1440}
         height={1026}
@@ -114,6 +116,7 @@ export function Hero() {
                 key={item.id}
                 src={item.image}
                 alt={`${item.name} — ${item.dims}`}
+                decoding="async"
                 width={1024}
                 height={1024}
                 initial={{ opacity: 0, x: dir * 40 }}
