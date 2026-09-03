@@ -2,6 +2,44 @@ import { motion, useInView, useMotionValue, useSpring } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
+/**
+ * Reveals once the element enters the viewport — and immediately if it has
+ * already been scrolled past (fast mobile scrolling used to leave content
+ * stuck at opacity 0).
+ */
+function useRevealed<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting || e.boundingClientRect.bottom < 0) {
+            setShown(true);
+            io.disconnect();
+          }
+        }
+      },
+      { rootMargin: "0px 0px -40px 0px", threshold: 0 },
+    );
+    io.observe(el);
+    const safety = window.setTimeout(() => setShown(true), 6000);
+    return () => {
+      io.disconnect();
+      window.clearTimeout(safety);
+    };
+  }, []);
+
+  return { ref, shown };
+}
+
 export function Reveal({
   children,
   delay = 0,
@@ -13,12 +51,13 @@ export function Reveal({
   y?: number;
   className?: string;
 }) {
+  const { ref, shown } = useRevealed<HTMLDivElement>();
   return (
     <motion.div
+      ref={ref}
       className={className}
       initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05, margin: "0px 0px -40px 0px" }}
+      animate={shown ? { opacity: 1, y: 0 } : { opacity: 0, y }}
       transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
@@ -33,12 +72,13 @@ export function Stagger({
   children: ReactNode;
   className?: string;
 }) {
+  const { ref, shown } = useRevealed<HTMLDivElement>();
   return (
     <motion.div
+      ref={ref}
       className={className}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.02, margin: "0px 0px -40px 0px" }}
+      animate={shown ? "visible" : "hidden"}
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: 0.06 } },
