@@ -69,19 +69,14 @@ export function SectorMarquee() {
   );
 }
 
-/**
- * Collapsible on mobile (<details>), always-open on desktop via CSS `open`
- * fallback: we render a plain block on lg with the marker hidden.
- */
-function FooterGroup({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+/** Collapsible sub-menu on mobile, always expanded on desktop. */
+function FooterGroup({ title, children }: { title: string; children: ReactNode }) {
+  const isMobile = useIsMobile();
   return (
-    <details className="group border-b border-steel-foreground/15 py-2 lg:border-0 lg:py-0 lg:[&]:!block" open={false}>
+    <details
+      className="group border-b border-steel-foreground/15 py-2 lg:border-0 lg:py-0"
+      open={!isMobile}
+    >
       <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-extrabold uppercase tracking-wider lg:pointer-events-none lg:cursor-default">
         {title}
         <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180 lg:hidden" />
