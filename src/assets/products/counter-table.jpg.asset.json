@@ -1,11 +1,11 @@
 {
-  "asset_id": "ad6d013b-3fc1-4648-a132-012ae190dc26",
-  "content_type": "image/jpeg",
-  "created_at": "2026-08-14T20:14:44Z",
-  "original_filename": "counter-table.jpg",
+  "version": 1,
+  "asset_id": "84b9fcb1-e3c5-4cd3-9942-4282023da7e0",
   "project_id": "25c3ab67-b419-4f4e-9e6c-06964774ea0b",
-  "r2_key": "a/v1/25c3ab67-b419-4f4e-9e6c-06964774ea0b/ad6d013b-3fc1-4648-a132-012ae190dc26/counter-table.jpg",
-  "size": 157821,
-  "url": "/__l5e/assets-v1/ad6d013b-3fc1-4648-a132-012ae190dc26/counter-table.jpg",
-  "version": 1
+  "url": "/__l5e/assets-v1/84b9fcb1-e3c5-4cd3-9942-4282023da7e0/counter-table.webp",
+  "r2_key": "a/v1/25c3ab67-b419-4f4e-9e6c-06964774ea0b/84b9fcb1-e3c5-4cd3-9942-4282023da7e0/counter-table.webp",
+  "original_filename": "counter-table.webp",
+  "size": 10938,
+  "content_type": "image/webp",
+  "created_at": "2026-09-03T06:37:49Z"
 }
